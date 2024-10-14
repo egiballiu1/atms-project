@@ -1,4 +1,5 @@
 import { createAppSlice } from "../../../app/createAppSlice"
+import * as AuthService from "../../../services/auth"
 
 type User = {
   id: string
@@ -10,7 +11,8 @@ type AuthSliceState = {
   user: User | null
   status: "idle" | "loading" | "failed"
   isAuthenticated: boolean
-  error: string | null
+  error?: string | null
+  token: string | null
 }
 
 const initialState: AuthSliceState = {
@@ -18,27 +20,41 @@ const initialState: AuthSliceState = {
   status: "idle",
   isAuthenticated: false,
   error: null,
+  token: null,
 }
 
 const authSlices = createAppSlice({
   name: "auth",
   initialState,
   reducers: create => ({
-    login: create.reducer(state => {
-      state.isAuthenticated = true
-      state.user = {
-        id: "1",
-        name: "John Doe",
-        email: "john.doe@gmail.com",
-      }
-    }),
+    login: create.asyncThunk(
+      async (body: { username: string; password: string }) => {
+        const response = await AuthService.login(body)
+        return response
+      },
+      {
+        pending: state => {
+          state.status = "loading"
+        },
+        fulfilled: (state, action) => {
+          state.status = "idle"
+          state.token = action.payload.token
+        },
+        rejected: (state, action) => {
+          state.status = "failed"
+          state.error = action.error.message
+        },
+      },
+    ),
     logout: create.reducer(state => {
       state.isAuthenticated = false
       state.user = null
+      state.token = null
     }),
   }),
   selectors: {
     selectUser: state => state.user,
+    selectToken: state => state.token,
     selectIsAuthenticated: state => state.isAuthenticated,
     selectStatus: state => state.status,
     selectError: state => state.error,
@@ -46,8 +62,13 @@ const authSlices = createAppSlice({
 })
 
 const { login, logout } = authSlices.actions
-const { selectUser, selectIsAuthenticated, selectStatus, selectError } =
-  authSlices.selectors
+const {
+  selectUser,
+  selectToken,
+  selectIsAuthenticated,
+  selectStatus,
+  selectError,
+} = authSlices.selectors
 
 export {
   authSlices,
@@ -58,6 +79,7 @@ export {
 
   // selectors
   selectUser,
+  selectToken,
   selectIsAuthenticated,
   selectStatus,
   selectError,
