@@ -39,10 +39,18 @@ const authSlices = createAppSlice({
         fulfilled: (state, action) => {
           state.status = "idle"
           state.token = action.payload.token
+          state.isAuthenticated = true
+          state.user = {
+            id: "1",
+            name: "Admin",
+            email: "admin@admin.com",
+          }
         },
         rejected: (state, action) => {
           state.status = "failed"
           state.error = action.error.message
+          state.isAuthenticated = false
+          state.user = null
         },
       },
     ),
