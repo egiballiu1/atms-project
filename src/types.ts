@@ -7,4 +7,12 @@ type Task = {
   description: string
 }
 
-export type { Task }
+type User = {
+  id: string
+  name: string
+  email: string
+  role: "admin" | "user"
+  avatar: string
+}
+
+export type { Task, User }

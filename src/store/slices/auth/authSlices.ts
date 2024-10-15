@@ -1,13 +1,7 @@
 import { jwtDecode } from "jwt-decode"
 import { createAppSlice } from "../../../app/createAppSlice"
 import * as AuthService from "../../../services/auth"
-
-type User = {
-  id: string
-  name: string
-  email: string
-  role: "admin" | "user"
-}
+import type { User } from "../../../types"
 
 type AuthSliceState = {
   user: User | null

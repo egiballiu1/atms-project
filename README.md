@@ -20,7 +20,7 @@ npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
 - `preview` - locally preview production build
 - `test` - launch test runner
 
-- `npx json-server mock-db.json` - start json-server 
+- `npx json-server mock-db.json` - start json-server
 
 ## Inspiration
 
