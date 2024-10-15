@@ -4,5 +4,23 @@
   },
   "login-admin": {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3OCIsImlkIjoyLCJuYW1lIjoiTWFyaW8gUm9zc2kiLCJlbWFpbCI6Im1hcmlvLnJvc3NpQG1haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyfQ.hstyAZFDkqDvJnjw_gC8e7EQXQDgWX6XDO0ZdeNbpyE"
-  }
+  },
+  "tasks": [
+    {
+      "id": "1",
+      "userId": "user123",
+      "priority": "high",
+      "status": "in-progress",
+      "name": "Implement authentication",
+      "description": "Develop the authentication module for the application."
+    },
+    {
+      "id": "task123",
+      "userId": "user123",
+      "priority": "high",
+      "status": "to-do",
+      "name": "Implement authentication",
+      "description": "Develop the authentication module for the application."
+    }
+  ]
 }

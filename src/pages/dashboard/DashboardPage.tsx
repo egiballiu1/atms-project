@@ -1,36 +1,54 @@
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { logout } from "../../store/slices/auth"
 import {
-  logout,
-  selectIsAuthenticated,
-  selectUser,
-} from "../../store/slices/auth"
-import { useNavigate } from "react-router-dom"
+  createTask,
+  getTasks,
+  selectTasks,
+  selectTasksByStatus,
+} from "../../store/slices/tasks"
 import { Layout } from "../../components/layout"
 
 const DashboardPage = () => {
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  const isAuthenticated = useAppSelector(selectIsAuthenticated)
-  const user = useAppSelector(selectUser)
+  const tasks = useAppSelector(selectTasks)
+  const todoTasks = useAppSelector(state =>
+    selectTasksByStatus(state, "blocked"),
+  )
 
   const handleLogout = () => {
     dispatch(logout())
   }
 
+  const handleTaskCreation = () => {
+    dispatch(
+      createTask({
+        id: "task123",
+        userId: "user123",
+        priority: "high",
+        status: "to-do",
+        name: "Implement authentication",
+        description: "Develop the authentication module for the application.",
+      }),
+    )
+  }
+
   useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login")
-    }
+    dispatch(getTasks())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated])
+  }, [])
 
   return (
     <Layout>
-      <div>Dashboard Page</div>
-      <div>User: {JSON.stringify(user)}</div>
+      <div>
+        <pre>{JSON.stringify(tasks)}</pre>
+      </div>
+      <div>
+        <pre>{JSON.stringify(todoTasks)}</pre>
+      </div>
       <button onClick={handleLogout}>Logout</button>
+      <button onClick={handleTaskCreation}>Create Task</button>
     </Layout>
   )
 }
