@@ -1,3 +1,4 @@
+import { jwtDecode } from "jwt-decode"
 import { createAppSlice } from "../../../app/createAppSlice"
 import * as AuthService from "../../../services/auth"
 
@@ -5,6 +6,7 @@ type User = {
   id: string
   name: string
   email: string
+  role: "admin" | "user"
 }
 
 type AuthSliceState = {
@@ -12,7 +14,6 @@ type AuthSliceState = {
   status: "idle" | "loading" | "failed"
   isAuthenticated: boolean
   error?: string | null
-  token: string | null
 }
 
 const initialState: AuthSliceState = {
@@ -20,7 +21,6 @@ const initialState: AuthSliceState = {
   status: "idle",
   isAuthenticated: false,
   error: null,
-  token: null,
 }
 
 const authSlices = createAppSlice({
@@ -30,7 +30,11 @@ const authSlices = createAppSlice({
     login: create.asyncThunk(
       async (body: { username: string; password: string }) => {
         const response = await AuthService.login(body)
-        return response
+        const user = jwtDecode(response.token) as User
+
+        sessionStorage.setItem(`atms-token`, response.token)
+
+        return user
       },
       {
         pending: state => {
@@ -38,13 +42,8 @@ const authSlices = createAppSlice({
         },
         fulfilled: (state, action) => {
           state.status = "idle"
-          state.token = action.payload.token
+          state.user = action.payload
           state.isAuthenticated = true
-          state.user = {
-            id: "1",
-            name: "Admin",
-            email: "admin@admin.com",
-          }
         },
         rejected: (state, action) => {
           state.status = "failed"
@@ -57,12 +56,11 @@ const authSlices = createAppSlice({
     logout: create.reducer(state => {
       state.isAuthenticated = false
       state.user = null
-      state.token = null
+      sessionStorage.removeItem(`atms-token`)
     }),
   }),
   selectors: {
     selectUser: state => state.user,
-    selectToken: state => state.token,
     selectIsAuthenticated: state => state.isAuthenticated,
     selectStatus: state => state.status,
     selectError: state => state.error,
@@ -70,13 +68,8 @@ const authSlices = createAppSlice({
 })
 
 const { login, logout } = authSlices.actions
-const {
-  selectUser,
-  selectToken,
-  selectIsAuthenticated,
-  selectStatus,
-  selectError,
-} = authSlices.selectors
+const { selectUser, selectIsAuthenticated, selectStatus, selectError } =
+  authSlices.selectors
 
 export {
   authSlices,
@@ -87,7 +80,6 @@ export {
 
   // selectors
   selectUser,
-  selectToken,
   selectIsAuthenticated,
   selectStatus,
   selectError,

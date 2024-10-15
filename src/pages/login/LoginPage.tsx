@@ -1,33 +1,24 @@
 import { useNavigate } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import {
-  login,
-  logout,
-  selectError,
-  selectIsAuthenticated,
-  selectStatus,
-  selectToken,
-  selectUser,
-} from "../../store/slices/auth"
-import { useEffect } from "react"
+import { login, selectIsAuthenticated } from "../../store/slices/auth"
+import { useEffect, useState } from "react"
 import { Layout } from "../../components/layout"
 
 const LoginPage = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
+  const [form, setForm] = useState({ username: "", password: "" })
 
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
-  const user = useAppSelector(selectUser)
-  const token = useAppSelector(selectToken)
-  const error = useAppSelector(selectError)
-  const status = useAppSelector(selectStatus)
 
-  const handleLogin = () => {
-    dispatch(login({ username: "admin", password: "admin" }))
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    setForm({ ...form, [name]: value })
   }
 
-  const handleLogout = () => {
-    dispatch(logout())
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    dispatch(login(form))
   }
 
   useEffect(() => {
@@ -39,14 +30,27 @@ const LoginPage = () => {
 
   return (
     <Layout>
-      <div>Login</div>
-      <div>User: {JSON.stringify(user)}</div>
-      <div>Token: {token}</div>
-      <div>Error: {error}</div>
-      <div>Status: {status}</div>
-      <div>is authenticated? {isAuthenticated}</div>
-      <button onClick={handleLogin}>Login</button>
-      <button onClick={handleLogout}>Logout</button>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Username:</label>
+          <input
+            type="text"
+            name="username"
+            value={form.username}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     </Layout>
   )
 }

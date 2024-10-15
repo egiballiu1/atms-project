@@ -1,6 +1,10 @@
 import { useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import { logout, selectIsAuthenticated } from "../../store/slices/auth"
+import {
+  logout,
+  selectIsAuthenticated,
+  selectUser,
+} from "../../store/slices/auth"
 import { useNavigate } from "react-router-dom"
 import { Layout } from "../../components/layout"
 
@@ -9,6 +13,7 @@ const DashboardPage = () => {
   const dispatch = useAppDispatch()
 
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
+  const user = useAppSelector(selectUser)
 
   const handleLogout = () => {
     dispatch(logout())
@@ -24,6 +29,7 @@ const DashboardPage = () => {
   return (
     <Layout>
       <div>Dashboard Page</div>
+      <div>User: {JSON.stringify(user)}</div>
       <button onClick={handleLogout}>Logout</button>
     </Layout>
   )
