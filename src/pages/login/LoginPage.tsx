@@ -10,6 +10,7 @@ import {
   selectUser,
 } from "../../store/slices/auth"
 import { useEffect } from "react"
+import { Layout } from "../../components/layout"
 
 const LoginPage = () => {
   const navigate = useNavigate()
@@ -37,7 +38,7 @@ const LoginPage = () => {
   }, [isAuthenticated])
 
   return (
-    <>
+    <Layout>
       <div>Login</div>
       <div>User: {JSON.stringify(user)}</div>
       <div>Token: {token}</div>
@@ -46,7 +47,7 @@ const LoginPage = () => {
       <div>is authenticated? {isAuthenticated}</div>
       <button onClick={handleLogin}>Login</button>
       <button onClick={handleLogout}>Logout</button>
-    </>
+    </Layout>
   )
 }
 

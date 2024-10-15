@@ -20,6 +20,8 @@ npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
 - `preview` - locally preview production build
 - `test` - launch test runner
 
+- `npx json-server mock-db.json` - start json-server 
+
 ## Inspiration
 
 - [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
