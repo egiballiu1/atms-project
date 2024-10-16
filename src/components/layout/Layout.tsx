@@ -6,8 +6,8 @@ import type { PropsWithChildren } from "react"
 type LayoutProps = PropsWithChildren
 
 const layoutContainer = [
-  "px-4",
-  "lg:px-6",
+  "p-4",
+  "lg:p-6",
   "lg:max-w-screen-lg",
   "xl:max-w-screen-xl",
   "mx-auto",

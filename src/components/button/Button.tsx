@@ -2,12 +2,15 @@ type ButtonProps = {
   label: string
   url?: string
   buttonStyle: "primary" | "secondary"
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const Button: React.FC<ButtonProps> = ({
   label,
   url,
   buttonStyle = "primary",
+  onClick,
+
   ...props
 }) => {
   return (
@@ -19,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
           {label}
         </a>
       ) : (
-        <button {...props}>{label}</button>
+        <button onClick={onClick ? onClick : undefined} {...props}>{label}</button>
       )}
     </div>
   )
