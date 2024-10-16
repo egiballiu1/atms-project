@@ -1,12 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+
 const tailwindConfigObject = {
   content: [
     "./index.html",
     "./src/pages/**/*.{js,ts,jsx,tsx}",
-    "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    colors: {
+    extend: {
+      colors: {
       white: "#fff",
       black: "#000",
       "primary-50": "#9999ff",
@@ -17,8 +19,8 @@ const tailwindConfigObject = {
       orange: "#ff8000",
       pink: "#ff3399",
       "gray-light": "#e0e0e0",
+      },
     },
-    extend: {},
   },
   plugins: [],
 }

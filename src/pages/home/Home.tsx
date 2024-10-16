@@ -25,7 +25,7 @@ const HomePage = () => {
           <h3 className={classNames(subtitle)}>
             Master Your Tasks, Optimize Your Time.
           </h3>
-          <Button label="Login" url="/login" type="secondary" />
+          <Button label="Login" url="/login" buttonStyle="secondary" />
         </div>
         <img
           src="/src/public/assets/atms.svg"

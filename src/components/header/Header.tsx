@@ -14,9 +14,9 @@ const container = [
 const Header = () => {
   return (
     <div className="header bg-primary sticky top-0">
-      <div className={classNames(container)}>
+      <a href="/" className={classNames(container)}>
         <img src="logo.svg" alt="ATMS logo" width={60} height={60} />
-      </div>
+      </a>
     </div>
   )
 }

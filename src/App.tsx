@@ -3,6 +3,7 @@ import { HomePage } from "./pages/home"
 import { DashboardPage } from "./pages/dashboard"
 import { LoginPage } from "./pages/login"
 import { RequiredAuth } from "./components"
+import { NotFound } from "./pages/404"
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           </RequiredAuth>
         }
       />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
