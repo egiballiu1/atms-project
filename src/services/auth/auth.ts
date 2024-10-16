@@ -1,13 +1,11 @@
 import { client } from "../client"
-
-// WIP: Mock delay
-const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+import { putCallToSleep } from "../utils"
 
 const login = async (body: {
   username: string
   password: string
 }): Promise<{ token: string }> => {
-  await sleep(2000)
+  await putCallToSleep()
 
   // NOTE: We do this to simulate a different response for the admin user.
   if (body.username === "admin") {
