@@ -16,7 +16,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <div
-      className={`py-2 px-4 w-fit rounded-2xl font-bold uppercase cursor-pointer border-2 border-primary hover:border-primary-50 transition-all ${buttonStyle === "primary" ? "bg-primary text-white hover:bg-primary-50" : "text-primary"}`}
+      className={`py-2 px-4 w-fit rounded-2xl font-bold uppercase cursor-pointer border-2 border-primary hover:border-primary-50 transition-all ${buttonStyle === "primary" ? "bg-primary text-white hover:bg-primary-50" : "text-primary bg-white"}`}
     >
       {url ? (
         <a href={url} {...props}>

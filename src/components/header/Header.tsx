@@ -1,4 +1,7 @@
 import classNames from "classnames"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { logout, selectIsAuthenticated } from "../../store/slices/auth"
+import { Button } from "../button"
 
 const container = [
   "px-4",
@@ -7,16 +10,36 @@ const container = [
   "lg:max-w-screen-lg",
   "xl:max-w-screen-xl",
   "mx-auto",
+  "w-full",
   "sticky",
   "top-0",
+  "flex",
+  "justify-between",
+  "items-center",
 ]
 
 const Header = () => {
+  const dispatch = useAppDispatch()
+  const isAuthenticated = useAppSelector(selectIsAuthenticated)
+
+  const handleLogout = () => {
+    dispatch(logout())
+  }
+
   return (
-    <div className="header bg-primary sticky top-0">
-      <a href="/" className={classNames(container)}>
-        <img src="logo.svg" alt="ATMS logo" width={60} height={60} />
-      </a>
+    <div className={classNames("header bg-primary")}>
+      <div className={classNames(container)}>
+        <a href="/" className={classNames()}>
+          <img src="logo.svg" alt="ATMS logo" width={60} height={60} />
+        </a>
+        {isAuthenticated && (
+          <Button
+            buttonStyle="secondary"
+            onClick={handleLogout}
+            label="Log Out"
+          />
+        )}
+      </div>{" "}
     </div>
   )
 }

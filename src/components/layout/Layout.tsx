@@ -11,6 +11,8 @@ const layoutContainer = [
   "lg:max-w-screen-lg",
   "xl:max-w-screen-xl",
   "mx-auto",
+  "w-full",
+  "h-full",
 ]
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {

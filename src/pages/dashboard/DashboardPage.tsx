@@ -1,6 +1,5 @@
 import { Fragment, useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
-import { logout } from "../../store/slices/auth"
 import {
   createTask,
   getTasks,
@@ -9,17 +8,14 @@ import {
   selectTasks,
 } from "../../store/slices/tasks"
 import { Layout } from "../../components/layout"
-import { Button, GridCard, Select } from "../../components"
+import { Button, GridCard } from "../../components"
 import type { Task } from "../../types"
+import { TasksFilter } from "./components"
 
 const DashboardPage = () => {
   const dispatch = useAppDispatch()
 
   const tasks = useAppSelector(selectTasks)
-
-  const handleLogout = () => {
-    dispatch(logout())
-  }
 
   const handleTaskCreation = () => {
     dispatch(
@@ -57,7 +53,7 @@ const DashboardPage = () => {
 
   return (
     <Layout>
-      <Select />
+      <TasksFilter />
 
       <div className="grid grid-cols-4 justify-between gap-4 mb-6">
         <Button
@@ -75,7 +71,7 @@ const DashboardPage = () => {
           onClick={handleTaskDeletion}
           label="Delete Task"
         />
-        <Button buttonStyle="primary" onClick={handleLogout} label="Logout" />
+       
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-4 justify-between gap-4">
         {tasks.map((task: Task) => {

@@ -22,37 +22,24 @@
     },
     {
       "id": "3302",
-      "name": "TEst",
+      "name": "user2",
       "email": "egi.teasaf@gmail.com",
       "role": "admin",
       "avatar": "sdasdsadsa"
     },
     {
       "id": "b855",
-      "name": "TEst",
-      "email": "egi.teasaf@gmail.com",
-      "role": "admin",
-      "avatar": "sdasdsadsa"
-    },
-    {
-      "id": "6775",
-      "name": "TEst",
-      "email": "egi.teasaf@gmail.com",
-      "role": "admin",
-      "avatar": "sdasdsadsa"
-    },
-    {
-      "id": "f3dd",
-      "name": "TEst",
+      "name": "user3",
       "email": "egi.teasaf@gmail.com",
       "role": "admin",
       "avatar": "sdasdsadsa"
     }
+
   ],
   "tasks": [
     {
       "id": "6a24",
-      "userId": "",
+      "userId": "09b7",
       "priority": "high",
       "status": "in-progress",
       "name": "dasdasdsa",
@@ -62,9 +49,25 @@
       "id": "c50c",
       "userId": "09b7",
       "priority": "high",
-      "status": "in-progress",
+      "status": "done",
       "name": "dasdasdsa",
       "description": "dsadsadas"
+    },
+    {
+      "id": "e100",
+      "userId": "3302",
+      "priority": "low",
+      "status": "blocked",
+      "name": "JWT",
+      "description": "Testing actions"
+    },
+    {
+      "id": "4d83",
+      "userId": "b855",
+      "priority": "medium",
+      "status": "done",
+      "name": "JWT",
+      "description": "Testing actions"
     }
   ]
 }
