@@ -5,6 +5,50 @@
   "login-admin": {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3OCIsImlkIjoyLCJuYW1lIjoiTWFyaW8gUm9zc2kiLCJlbWFpbCI6Im1hcmlvLnJvc3NpQG1haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNTE2MjM5MDIyfQ.hstyAZFDkqDvJnjw_gC8e7EQXQDgWX6XDO0ZdeNbpyE"
   },
+  "users": [
+    {
+      "id": "09b7",
+      "name": "Egi",
+      "email": "egi.balliu@gmail.com",
+      "role": "user",
+      "avatar": "sdasdsadsa"
+    },
+    {
+      "id": "ed01",
+      "name": "TEst",
+      "email": "egi.teasaf@gmail.com",
+      "role": "user",
+      "avatar": "sdasdsadsa"
+    },
+    {
+      "id": "3302",
+      "name": "TEst",
+      "email": "egi.teasaf@gmail.com",
+      "role": "admin",
+      "avatar": "sdasdsadsa"
+    },
+    {
+      "id": "b855",
+      "name": "TEst",
+      "email": "egi.teasaf@gmail.com",
+      "role": "admin",
+      "avatar": "sdasdsadsa"
+    },
+    {
+      "id": "6775",
+      "name": "TEst",
+      "email": "egi.teasaf@gmail.com",
+      "role": "admin",
+      "avatar": "sdasdsadsa"
+    },
+    {
+      "id": "f3dd",
+      "name": "TEst",
+      "email": "egi.teasaf@gmail.com",
+      "role": "admin",
+      "avatar": "sdasdsadsa"
+    }
+  ],
   "tasks": [
     {
       "id": "1",
@@ -48,6 +92,14 @@
     },
     {
       "id": "task63",
+      "userId": "user555",
+      "priority": "low",
+      "status": "blocked",
+      "name": "JWT",
+      "description": "Testing actions"
+    },
+    {
+      "id": "task123",
       "userId": "user555",
       "priority": "low",
       "status": "blocked",

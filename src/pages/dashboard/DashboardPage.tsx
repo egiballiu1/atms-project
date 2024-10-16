@@ -11,6 +11,7 @@ import {
 import { Layout } from "../../components/layout"
 import { Button, GridCard, Select } from "../../components"
 import type { Task } from "../../types"
+import { UserCreateForm, UsersList } from "./components"
 
 const DashboardPage = () => {
   const dispatch = useAppDispatch()
@@ -24,7 +25,6 @@ const DashboardPage = () => {
   const handleTaskCreation = () => {
     dispatch(
       createTask({
-        id: "task123",
         userId: "user555",
         priority: "low",
         status: "blocked",

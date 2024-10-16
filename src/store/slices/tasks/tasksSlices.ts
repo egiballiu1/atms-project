@@ -19,7 +19,7 @@ const tasksSlices = createAppSlice({
   initialState,
   reducers: create => ({
     createTask: create.asyncThunk(
-      async (task: Task) => {
+      async (task: Omit<Task, "id">) => {
         const response = await TaskService.createTask(task)
 
         return response

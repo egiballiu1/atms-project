@@ -4,7 +4,7 @@ import { client } from "../client"
 // WIP: Mock delay
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
-const createTask = async (task: Task): Promise<Task> => {
+const createTask = async (task: Omit<Task, "id">): Promise<Task> => {
   await sleep(2000)
 
   return client.post("tasks", { json: task }).json<Task>()
