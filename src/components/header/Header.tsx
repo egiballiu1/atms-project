@@ -9,6 +9,7 @@ const container = [
   "lg:px-6",
   "lg:max-w-screen-lg",
   "xl:max-w-screen-xl",
+  "2xl:max-w-full",
   "mx-auto",
   "w-full",
   "flex",

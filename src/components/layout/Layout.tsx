@@ -13,6 +13,7 @@ const layoutContainer = [
   // "mx-auto",
   "w-full",
   "h-full",
+  "overflow-scroll",
 ]
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {

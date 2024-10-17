@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Layout } from "../../components/layout"
-import { TasksFilter } from "./components"
+import { TasksFilter, UserCreateForm, UsersList } from "./components"
 import classNames from "classnames"
 import { DashboardPageGrid } from "./DashboardPageGrid"
 
@@ -22,6 +22,8 @@ const DashboardPage = () => {
         return <TasksFilter />
       case "grid":
         return <DashboardPageGrid />
+      case "users":
+        return <UsersList />
     }
   }
 
@@ -48,6 +50,16 @@ const DashboardPage = () => {
                 onClick={() => setActiveMenu("grid")}
               >
                 Grid
+              </button>
+            </li>
+            <li>
+              <button
+                className={classNames(dashboardMenuItem, {
+                  "bg-primary-25": activeMenu === "users",
+                })}
+                onClick={() => setActiveMenu("users")}
+              >
+                Users
               </button>
             </li>
           </ul>

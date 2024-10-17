@@ -33,63 +33,108 @@ const UserCreateForm: FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    console.log(formData)
     dispatch(createUser(formData))
-    // Add your form submission logic here
+    setFormData({
+      name: "",
+      email: "",
+      role: "user",
+      avatar: "",
+    })
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </label>
+    <form onSubmit={handleSubmit} className="">
+      <label
+        htmlFor="name"
+        className="block text-sm font-medium leading-6 text-gray-900"
+      >
+        Username :
+        <input
+          id="name"
+          type="text"
+          name="name"
+          required
+          value={formData.name}
+          onChange={handleChange}
+          autoComplete="text"
+          className="block w-full rounded-md border-0 p-1.5 min-h-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        />
+      </label>
+
+      <label
+        htmlFor="email"
+        className="block text-sm font-medium leading-6 text-gray-900"
+      >
+        Email :
+        <input
+          id="email"
+          type="email"
+          name="email"
+          required
+          value={formData.email}
+          onChange={handleChange}
+          autoComplete="text"
+          className="block w-full rounded-md border-0 p-1.5 min-h-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        />
+      </label>
+
+      <label
+        htmlFor="role"
+        className="block text-sm font-medium leading-6 text-gray-900"
+      >
+        Role:
+        <select
+          id="role"
+          name="role"
+          required
+          value={formData.role}
+          onChange={handleChange}
+          className="block w-full rounded-md border-0 p-1.5 min-h-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        >
+          <option value="admin">Admin</option>
+          <option value="user">User</option>
+        </select>
+      </label>
+
+      {/* WIP */}
+      <label
+        htmlFor="avatar"
+        className="block text-sm font-medium leading-6 text-gray-900"
+      >
+        Avatar :
+        <select
+          id="avatar"
+          name="avatar"
+          required
+          value={formData.avatar}
+          onChange={handleChange}
+          className="block w-full rounded-md border-0 p-1.5 min-h-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        >
+          <option value="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&hairColor=Blonde&clotheType=BlazerShirt&eyeType=Happy">
+            Avataaars Short Hair Blonde
+          </option>
+          <option value="https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&hairColor=Black&clotheType=Hoodie&eyeType=Default&mouthType=Smile&skinColor=Tanned">
+            Avataaars Long Hair Black
+          </option>
+          <option value="https://avatars.dicebear.com/api/adventurer/username1.svg">
+            DiceBear Adventurer 1
+          </option>
+          <option value="https://avatars.dicebear.com/api/adventurer/username2.svg">
+            DiceBear Adventurer 2
+          </option>
+          <option value="https://randomuser.me/api/portraits/men/75.jpg">
+            RandomUser Man 1
+          </option>
+          <option value="https://randomuser.me/api/portraits/women/65.jpg">
+            RandomUser Woman 1
+          </option>
+        </select>
+      </label>
+
+      <div className="mt-4">
+        <Button label="Add User" type="submit" buttonStyle="primary" />
       </div>
-      <div>
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Role:
-          <select
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            required
-          >
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
-          </select>
-        </label>
-      </div>
-      <div>
-        <label>
-          Avatar URL:
-          <input
-            type="text"
-            name="avatar"
-            value={formData.avatar}
-            onChange={handleChange}
-            required
-          />
-        </label>
-      </div>
-      <Button label="Create User" type="submit" buttonStyle="primary" />
     </form>
   )
 }
