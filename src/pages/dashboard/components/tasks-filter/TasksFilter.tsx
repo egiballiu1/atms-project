@@ -6,26 +6,23 @@ import {
 } from "@headlessui/react"
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
-import {
-  getTasks,
-  selectTasks,
-} from "../../../../store/slices/tasks"
-import {
-  getUsers,
-  selectUsers,
-} from "../../../../store/slices/users"
+import { getTasks, selectTasks } from "../../../../store/slices/tasks"
+import { getUsers, selectUsers } from "../../../../store/slices/users"
 import type { FC } from "react"
 import { Fragment, useEffect, useState } from "react"
 import type { Task, User } from "../../../../types"
 import { ListCard } from "../../../../components/cards"
 import classNames from "classnames"
+import { Modal } from "../../../../components"
+import { TaskCreateForm } from "../task-create-form"
 
 const filterContainer = [
   "grid",
   "grid-cols-1",
-  "lg:grid-cols-4",
+  "lg:grid-cols-[1fr_1fr_2fr]",
   "gap-4",
   "justify-between",
+  "items-center",
 ]
 
 const TasksFilter: FC = () => {
@@ -185,6 +182,12 @@ const TasksFilter: FC = () => {
             </ListboxOptions>
           </div>
         </Listbox>
+
+        <div className="ml-auto">
+          <Modal label={"Add task"}>
+            <TaskCreateForm />
+          </Modal>
+        </div>
       </div>
 
       <div className="mt-10">

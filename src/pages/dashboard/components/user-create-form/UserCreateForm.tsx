@@ -3,14 +3,7 @@ import { useState } from "react"
 import { useAppDispatch } from "../../../../app/hooks"
 import { createUser } from "../../../../store/slices/users"
 import { Button } from "../../../../components"
-
-type User = {
-  id: string
-  name: string
-  email: string
-  role: "admin" | "user"
-  avatar: string
-}
+import type { User } from "../../../../types"
 
 const UserCreateForm: FC = () => {
   const dispatch = useAppDispatch()
@@ -44,10 +37,10 @@ const UserCreateForm: FC = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="">
+    <form onSubmit={handleSubmit}>
       <label
         htmlFor="name"
-        className="block text-sm font-medium leading-6 text-gray-900"
+        className="block text-sm font-medium leading-6 text-gray-900 mb-2"
       >
         Username :
         <input
@@ -64,7 +57,7 @@ const UserCreateForm: FC = () => {
 
       <label
         htmlFor="email"
-        className="block text-sm font-medium leading-6 text-gray-900"
+        className="block text-sm font-medium leading-6 text-gray-900 mb-2"
       >
         Email :
         <input
@@ -81,7 +74,7 @@ const UserCreateForm: FC = () => {
 
       <label
         htmlFor="role"
-        className="block text-sm font-medium leading-6 text-gray-900"
+        className="block text-sm font-medium leading-6 text-gray-900 mb-2"
       >
         Role:
         <select
@@ -94,41 +87,6 @@ const UserCreateForm: FC = () => {
         >
           <option value="admin">Admin</option>
           <option value="user">User</option>
-        </select>
-      </label>
-
-      {/* WIP */}
-      <label
-        htmlFor="avatar"
-        className="block text-sm font-medium leading-6 text-gray-900"
-      >
-        Avatar :
-        <select
-          id="avatar"
-          name="avatar"
-          required
-          value={formData.avatar}
-          onChange={handleChange}
-          className="block w-full rounded-md border-0 p-1.5 min-h-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-        >
-          <option value="https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&hairColor=Blonde&clotheType=BlazerShirt&eyeType=Happy">
-            Avataaars Short Hair Blonde
-          </option>
-          <option value="https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&hairColor=Black&clotheType=Hoodie&eyeType=Default&mouthType=Smile&skinColor=Tanned">
-            Avataaars Long Hair Black
-          </option>
-          <option value="https://avatars.dicebear.com/api/adventurer/username1.svg">
-            DiceBear Adventurer 1
-          </option>
-          <option value="https://avatars.dicebear.com/api/adventurer/username2.svg">
-            DiceBear Adventurer 2
-          </option>
-          <option value="https://randomuser.me/api/portraits/men/75.jpg">
-            RandomUser Man 1
-          </option>
-          <option value="https://randomuser.me/api/portraits/women/65.jpg">
-            RandomUser Woman 1
-          </option>
         </select>
       </label>
 

@@ -9,7 +9,7 @@ import { XCircleIcon } from "@heroicons/react/20/solid"
 const card = [
   "grid",
   "grid-cols-2",
-  "lg:grid-cols-[1fr_0.6fr_0.8fr_2fr_0.2fr]",
+  "lg:grid-cols-[1fr_0.8fr_0.8fr_2fr_0.2fr]",
   "justify-between",
   "items-center",
   "border",
@@ -70,7 +70,7 @@ const ListCard: FC<Task> = ({
         <h3 className={classNames(nameStyle)}>{name}</h3>
         <div className="flex flex-row items-center gap-2">
           <p className="lg:line-clamp-1 line-clamp-2">{user?.name}</p>
-          {/* <img src={userId} alt={'user logo'} width={40} height={40} /> */}
+          <img src={user?.avatar} alt={'avatar'} width={40} height={40} />
         </div>
         <span className={`${statusBg} rounded-md w-fit p-1 uppercase`}>
           {status ? status : "to-do"}

@@ -28,7 +28,7 @@ const UsersList: FC = () => {
               name={user.name}
               email={user.email}
               role={user.role}
-              avatar={""}
+              avatar={user.avatar}
             />
           </div>
         ))}

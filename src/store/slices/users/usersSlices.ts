@@ -1,6 +1,7 @@
 import { createAppSlice } from "../../../app/createAppSlice"
 import type { User } from "../../../types"
 import * as UserService from "../../../services/users"
+import { getRandomAvatar } from "../../../services/utils"
 
 type UsersSliceState = {
   users: User[]
@@ -20,7 +21,8 @@ const usersSlices = createAppSlice({
   reducers: create => ({
     createUser: create.asyncThunk(
       async (user: Omit<User, "id">) => {
-        const response = await UserService.createUser(user)
+        const avatar = getRandomAvatar();
+        const response = await UserService.createUser({ ...user, avatar });
 
         return response
       },

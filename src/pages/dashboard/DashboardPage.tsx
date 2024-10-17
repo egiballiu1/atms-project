@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Layout } from "../../components/layout"
-import { TasksFilter, UserCreateForm, UsersList } from "./components"
+import { TasksFilter, UsersList } from "./components"
 import classNames from "classnames"
 import { DashboardPageGrid } from "./DashboardPageGrid"
 
@@ -29,8 +29,8 @@ const DashboardPage = () => {
 
   return (
     <Layout>
-      <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] lg:h-screen">
-        <div className="bg-gray-lighter text-black font-bold">
+      <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] lg:h-screen ">
+        <div className="bg-gray-lighter text-black font-bold lg:sticky lg:top-[100px]">
           <ul className="grid grid-cols-2 lg:grid-cols-1">
             <li>
               <button
@@ -65,7 +65,7 @@ const DashboardPage = () => {
           </ul>
         </div>
 
-        <div className=" p-8">{renderContent()}</div>
+        <div className="p-8">{renderContent()}</div>
       </div>
     </Layout>
   )
