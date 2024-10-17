@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom"
 import { useAppSelector } from "../../app/hooks"
 import { selectIsAuthenticated } from "../../store/slices/auth"
 import { useEffect } from "react"
-import { Layout, LoginForm } from "../../components"
+import { Layout } from "../../components"
+import { LoginForm } from "./components/login-form"
 
 const LoginPage = () => {
   const navigate = useNavigate()

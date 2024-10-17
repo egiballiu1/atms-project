@@ -11,8 +11,6 @@ const container = [
   "xl:max-w-screen-xl",
   "mx-auto",
   "w-full",
-  "sticky",
-  "top-0",
   "flex",
   "justify-between",
   "items-center",
@@ -27,10 +25,10 @@ const Header = () => {
   }
 
   return (
-    <div className={classNames("header bg-primary")}>
+    <div className={classNames("header bg-primary sticky top-0")}>
       <div className={classNames(container)}>
         <a href="/" className={classNames()}>
-          <img src="logo.svg" alt="ATMS logo" width={60} height={60} />
+          <img src="/logo.svg" alt="ATMS logo" width={60} height={60} />
         </a>
         {isAuthenticated && (
           <Button

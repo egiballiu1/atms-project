@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { useAppDispatch } from "../../app/hooks"
-import { login } from "../../store/slices/auth"
+import { useAppDispatch } from "../../../../app/hooks"
+import { login } from "../../../../store/slices/auth"
 
 const LoginForm = () => {
   const dispatch = useAppDispatch()
@@ -17,9 +17,9 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="sm:mx-auto sm:w-full sm:max-w-sm max-w-[60%]">
+    <div className="sm:mx-auto sm:w-full sm:max-w-sm max-w-[60%] m-auto">
       <div className="mt-10 sm:mx-auto">
-        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <h2 className="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Log in to your account
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
