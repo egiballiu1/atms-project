@@ -31,7 +31,7 @@ const DashboardPage = () => {
     <Layout>
       <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] lg:h-screen ">
         <div className="bg-gray-lighter text-black font-bold lg:sticky lg:top-[100px]">
-          <ul className="grid grid-cols-2 lg:grid-cols-1">
+          <ul className="grid grid-cols-3 lg:grid-cols-1">
             <li>
               <button
                 className={classNames(dashboardMenuItem, {

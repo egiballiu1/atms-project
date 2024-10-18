@@ -125,6 +125,8 @@ const usersSlices = createAppSlice({
   }),
   selectors: {
     selectUsers: state => state.users,
+    selectStatus: state => state.status,
+    selectError: state => state.error,
     selectUserById: (state, id: string) =>
       state.users.find(user => user.id === id),
     selectUserByRole: (state, role: User["role"]) =>
@@ -133,7 +135,7 @@ const usersSlices = createAppSlice({
 })
 
 const { createUser, getUsers, updateUser, deleteUser } = usersSlices.actions
-const { selectUsers, selectUserById, selectUserByRole } = usersSlices.selectors
+const { selectUsers, selectUserById, selectUserByRole, selectStatus, selectError } = usersSlices.selectors
 
 export {
   usersSlices,
@@ -146,6 +148,8 @@ export {
 
   // selectors
   selectUsers,
+  selectStatus,
+  selectError,
   selectUserById,
   selectUserByRole,
 }

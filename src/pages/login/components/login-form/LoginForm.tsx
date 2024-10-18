@@ -1,10 +1,15 @@
 import { useState } from "react"
-import { useAppDispatch } from "../../../../app/hooks"
-import { login } from "../../../../store/slices/auth"
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
+import { login, selectError, selectStatus } from "../../../../store/slices/auth"
+import { Alerts } from "../../../../components"
 
 const LoginForm = () => {
   const dispatch = useAppDispatch()
   const [htmlForm, sethtmlForm] = useState({ username: "", password: "" })
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+  const status = useAppSelector(selectStatus)
+  const error = useAppSelector(selectError)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
@@ -13,7 +18,35 @@ const LoginForm = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    setFormSubmitted(true)
     dispatch(login(htmlForm))
+  }
+
+  const renderAlerts = () => {
+    if (!formSubmitted) return null
+
+    if (status === "loading") {
+      return (
+        <Alerts alertType="loading"/>
+      )
+    } else if (status === "idle") {
+      return (
+        <Alerts
+          alertType="success"
+          title="Success"
+          description="Logged in successfully!"
+        />
+      )
+    } else if (status === "failed") {
+      return (
+        <Alerts
+          alertType="error"
+          title="Something went wrong!"
+          description={error || "Login failed. Try again later."}
+        />
+      )
+    }
+    return null
   }
 
   return (
@@ -74,6 +107,7 @@ const LoginForm = () => {
             Log in
           </button>
         </form>
+        {renderAlerts()}
       </div>
     </div>
   )

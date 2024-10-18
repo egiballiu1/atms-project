@@ -54,6 +54,13 @@
       "email": "marta@gmail.com",
       "role": "admin",
       "avatar": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&hairColor=SilverGray&clotheType=BlazerSweater&eyeType=Happy"
+    },
+    {
+      "id": "ffcd",
+      "name": "Egi",
+      "email": "e@gmai.com",
+      "role": "admin",
+      "avatar": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&hairColor=PastelPink&clotheType=Hoodie&eyeType=Close"
     }
   ],
   "tasks": [
@@ -95,6 +102,22 @@
       "priority": "low",
       "status": "done",
       "name": "Analysis and reports",
+      "description": ""
+    },
+    {
+      "id": "3fed",
+      "userId": "9f0f",
+      "priority": "high",
+      "status": "to-do",
+      "name": "Set grid tasks on column",
+      "description": "urgent task"
+    },
+    {
+      "id": "eed3",
+      "userId": "3b87",
+      "priority": "high",
+      "status": "in-progress",
+      "name": "Test Alert notifications",
       "description": ""
     }
   ]

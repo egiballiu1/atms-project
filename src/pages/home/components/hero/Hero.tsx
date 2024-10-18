@@ -1,5 +1,6 @@
 import classNames from "classnames"
 import { Button } from "../../../../components"
+import { FormattedMessage } from "react-intl"
 
 const container = [
   "p-4",
@@ -14,7 +15,7 @@ const container = [
   "lg:gap-10",
   "items-center",
   "justify-between",
-  "h-full"
+  "h-full",
 ]
 const title = [
   "text-black",
@@ -32,9 +33,11 @@ const Hero = () => {
   return (
     <div className={classNames(container)}>
       <div className="flex flex-col items-center lg:items-start">
-        <h1 className={classNames(title)}>Advanced Tasks Management System</h1>
+        <h1 className={classNames(title)}>
+          <FormattedMessage id="hp-hero-title" />
+        </h1>
         <h3 className={classNames(subtitle)}>
-          Master Your Tasks, Optimize Your Time.
+          <FormattedMessage id="hp-hero-subtitle" />
         </h3>
         <Button label="Login" url="/login" buttonStyle="secondary" />
       </div>
