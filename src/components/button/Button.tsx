@@ -36,7 +36,10 @@ const Button: React.FC<ButtonProps> = ({
         <a
           href={url}
           {...props}
-          className={classNames(button, `button ${buttonStyle === "primary" ? "bg-primary text-white hover:bg-primary-50" : "text-primary bg-white"}`)}
+          className={classNames(
+            button,
+            `button ${buttonStyle === "primary" ? "bg-primary text-white hover:bg-primary-50" : "text-primary bg-white"}`,
+          )}
         >
           {label}
         </a>
@@ -45,7 +48,10 @@ const Button: React.FC<ButtonProps> = ({
           type={type}
           onClick={onClick ? onClick : undefined}
           {...props}
-          className={classNames(button, `button ${buttonStyle === "primary" ? "bg-primary text-white hover:bg-primary-50" : "text-primary bg-white"}`)}
+          className={classNames(
+            button,
+            `button ${buttonStyle === "primary" ? "bg-primary text-white hover:bg-primary-50" : "text-primary bg-white"}`,
+          )}
         >
           {label}
         </button>

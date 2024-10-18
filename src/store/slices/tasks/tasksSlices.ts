@@ -107,11 +107,13 @@ const tasksSlices = createAppSlice({
     selectError: state => state.error,
     selectTasksByStatus: (state, status: Task["status"]) =>
       state.tasks.filter(task => task.status === status),
-  },
+    selectTasksBySearchTerm:(state, searchTerm:string ) => state.tasks.filter(task =>
+      task.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  }
 })
 
 const { createTask, getTasks, updateTask, deleteTask } = tasksSlices.actions
-const { selectTasks, selectStatus, selectError, selectTasksByStatus } =
+const { selectTasks, selectStatus, selectError, selectTasksByStatus, selectTasksBySearchTerm } =
   tasksSlices.selectors
 
 export {
@@ -128,4 +130,5 @@ export {
   selectStatus,
   selectError,
   selectTasksByStatus,
+  selectTasksBySearchTerm
 }

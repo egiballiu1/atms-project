@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { Layout } from "../../components/layout"
-import { TasksFilter, UsersList } from "./components"
+import { TaskGrid, TasksFilter, UsersList } from "./components"
 import classNames from "classnames"
-import { DashboardPageGrid } from "./DashboardPageGrid"
+import { useAppSelector } from "../../app/hooks"
+import { selectUser } from "../../store/slices/auth"
 
 const dashboardMenuItem = [
   "block",
@@ -16,12 +17,14 @@ const dashboardMenuItem = [
 const DashboardPage = () => {
   const [activeMenu, setActiveMenu] = useState("list")
 
+  const user = useAppSelector(selectUser)
+
   const renderContent = () => {
     switch (activeMenu) {
       case "list":
         return <TasksFilter />
       case "grid":
-        return <DashboardPageGrid />
+        return <TaskGrid />
       case "users":
         return <UsersList />
     }
@@ -31,7 +34,9 @@ const DashboardPage = () => {
     <Layout>
       <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] lg:h-screen ">
         <div className="bg-gray-lighter text-black font-bold lg:sticky lg:top-[100px]">
-          <ul className="grid grid-cols-3 lg:grid-cols-1">
+          <ul
+            className={`grid ${user?.role === "admin" ? "grid-cols-3" : "grid-cols-2"} lg:grid-cols-1`}
+          >
             <li>
               <button
                 className={classNames(dashboardMenuItem, {
@@ -52,16 +57,18 @@ const DashboardPage = () => {
                 Grid
               </button>
             </li>
-            <li>
-              <button
-                className={classNames(dashboardMenuItem, {
-                  "bg-primary-25": activeMenu === "users",
-                })}
-                onClick={() => setActiveMenu("users")}
-              >
-                Users
-              </button>
-            </li>
+            {user?.role === "admin" && (
+              <li>
+                <button
+                  className={classNames(dashboardMenuItem, {
+                    "bg-primary-25": activeMenu === "users",
+                  })}
+                  onClick={() => setActiveMenu("users")}
+                >
+                  Users
+                </button>
+              </li>
+            )}
           </ul>
         </div>
 

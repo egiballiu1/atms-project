@@ -4,9 +4,14 @@ import {
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/react"
+import { Field, Input } from "@headlessui/react"
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
-import { getTasks, selectTasks } from "../../../../store/slices/tasks"
+import {
+  getTasks,
+  selectTasks,
+  selectTasksBySearchTerm,
+} from "../../../../store/slices/tasks"
 import { getUsers, selectUsers } from "../../../../store/slices/users"
 import type { FC } from "react"
 import { Fragment, useEffect, useState } from "react"
@@ -34,9 +39,14 @@ const TasksFilter: FC = () => {
     "done",
   ]
 
+  const [searchTerm, setSearchTerm] = useState("")
+
   const dispatch = useAppDispatch()
   const users = useAppSelector(selectUsers)
   const tasks = useAppSelector(selectTasks)
+  const searchTasks = useAppSelector(state =>
+    selectTasksBySearchTerm(state, searchTerm),
+  )
 
   const [filteredTasks, setFilteredTasks] = useState(tasks)
   const [statusSelected, setstatusSelected] = useState("all-statuses")
@@ -48,6 +58,12 @@ const TasksFilter: FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const handleSearchTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value)
+    setSearchTerm(e.target.value)
+  }
+
+  //WIP
   useEffect(() => {
     const filtered = tasks.filter(task => {
       const statusMatch =
@@ -61,11 +77,28 @@ const TasksFilter: FC = () => {
     })
 
     setFilteredTasks(filtered)
+
   }, [statusSelected, userSelected, tasks])
+
+  console.log(JSON.stringify(searchTasks.length))
 
   return (
     <>
       <div className={classNames(filterContainer)}>
+        <div className="w-full max-w-md px-4">
+          <Field>
+            <Input
+              value={searchTerm}
+              onChange={handleSearchTerm}
+              className={classNames(
+                "block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-gray-900",
+                "relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6",
+                "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
+              )}
+            />
+          </Field>
+        </div>
+
         <Listbox value={statusSelected} onChange={setstatusSelected}>
           <div className="relative">
             <ListboxButton className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">

@@ -36,13 +36,6 @@ const Modal: FC<ModalProps> = ({ children, label, modalTitle }) => {
           />
             <DialogTitle className="font-bold">{modalTitle}</DialogTitle>
             {children}
-            {/* <div className="flex gap-4">
-              <Button
-                onClick={() => setIsOpen(false)}
-                label="Cancel"
-                buttonStyle="secondary"
-              />
-            </div> */}
           </DialogPanel>
         </div>
       </Dialog>
