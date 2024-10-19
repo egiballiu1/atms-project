@@ -16,5 +16,8 @@
   "all-users": "Tutti gli utenti",
   "add-task": "Aggiungi attività",
   "log-out": "Esci",
-  "no-tasks-found-grid":"No attività"
+  "no-tasks-found-grid": "No attività",
+  "save": "Salva",
+  "cancel": "Cancella",
+  "edit": "Modifica"
 }

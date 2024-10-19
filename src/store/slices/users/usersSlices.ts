@@ -134,7 +134,7 @@ const usersSlices = createAppSlice({
   },
 })
 
-const { createUser, getUsers, updateUser, deleteUser } = usersSlices.actions
+const { createUser, getUsers, updateUser, deleteUser, getUser } = usersSlices.actions
 const { selectUsers, selectUserById, selectUserByRole, selectStatus, selectError } = usersSlices.selectors
 
 export {
@@ -143,6 +143,7 @@ export {
   // actions
   createUser,
   getUsers,
+  getUser,
   updateUser,
   deleteUser,
 

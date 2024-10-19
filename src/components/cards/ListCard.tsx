@@ -22,6 +22,7 @@ const card = [
   "cursor-pointer",
   "mb-2",
   "gap-2",
+  "bg-white",
 ]
 
 const ListCard: FC<Task> = ({
