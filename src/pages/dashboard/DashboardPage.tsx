@@ -8,7 +8,8 @@ import { selectUser } from "../../store/slices/auth"
 const dashboardMenuItem = [
   "block",
   "w-full",
-  "p-4",
+  "py-4",
+  "px-8",
   "hover:bg-primary-25",
   "text-center",
   "lg:text-left",

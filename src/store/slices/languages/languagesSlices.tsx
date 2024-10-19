@@ -18,7 +18,7 @@ const languagesSlices = createAppSlice({
   name: "languages",
   initialState,
   reducers: create => ({
-    setSelectedLanguage: create.reducer((state, action: PayloadAction<string>) => {
+    changeLanguage: create.reducer((state, action: PayloadAction<string>) => {
       state.language = action.payload
     }),
   }),
@@ -27,14 +27,14 @@ const languagesSlices = createAppSlice({
   },
 })
 
-const { setSelectedLanguage } = languagesSlices.actions
+const { changeLanguage } = languagesSlices.actions
 const { selectLanguage } = languagesSlices.selectors
 
 export {
   languagesSlices,
 
   // actions
-  setSelectedLanguage,
+  changeLanguage,
 
   // selectors
   selectLanguage,

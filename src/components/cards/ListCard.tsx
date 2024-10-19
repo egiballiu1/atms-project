@@ -24,8 +24,6 @@ const card = [
   "gap-2",
 ]
 
-const nameStyle = ["font-bold", "text-black"]
-
 const ListCard: FC<Task> = ({
   id,
   name,
@@ -69,7 +67,7 @@ const ListCard: FC<Task> = ({
           onClick={() => handleDeleteTask(id)}
         />
 
-        <h3 className={classNames(nameStyle)}>{name}</h3>
+        <h3 className={classNames("text-black")}>{name}</h3>
         <div className="flex flex-row items-center gap-2">
           <p className="lg:line-clamp-1 line-clamp-2">{user?.name}</p>
           <img src={user?.avatar} alt={"avatar"} width={40} height={40} />
@@ -86,9 +84,7 @@ const ListCard: FC<Task> = ({
           month="long"
           year="numeric"
         />
-        <span
-          className={`${priorityBg} w-4 h-4 rounded-full order-4`}
-        />
+        <span className={`${priorityBg} w-4 h-4 rounded-full order-4`} />
       </div>
     </div>
   )

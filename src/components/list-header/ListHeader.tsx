@@ -8,7 +8,7 @@ const card = [
   "grid-cols-2",
   "justify-between",
   "items-center",
-  "border",
+  "border-4",
   "border-gray-light",
   "border-solid",
   "p-4",
@@ -19,7 +19,7 @@ const card = [
   "gap-2",
 ]
 
-const text = ["font-normal", "text-base", "font-black"]
+const text = ["font-medium", "text-base", "font-black"]
 
 type ListHeaderProps = {
   type: "tasks-list" | "users-list"
