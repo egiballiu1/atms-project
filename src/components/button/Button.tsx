@@ -1,8 +1,9 @@
 import classNames from "classnames"
+import type { ReactNode } from "react"
 import { Fragment } from "react/jsx-runtime"
 
 type ButtonProps = {
-  label: string
+  label: string | ReactNode
   url?: string
   type?: "button" | "submit" | "reset"
   buttonStyle: "primary" | "secondary"

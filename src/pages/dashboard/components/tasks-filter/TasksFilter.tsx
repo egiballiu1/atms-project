@@ -4,30 +4,27 @@ import {
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/react"
-import { Field, Input } from "@headlessui/react"
+import { Input } from "@headlessui/react"
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
-import {
-  filterTasks,
-  getTasks,
-  selectFilteredTasks,
-} from "../../../../store/slices/tasks"
+import { filterTasks, getTasks } from "../../../../store/slices/tasks"
 import { getUsers, selectUsers } from "../../../../store/slices/users"
 import type { FC } from "react"
-import { Fragment, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import type { Task, User } from "../../../../types"
-import { ListCard } from "../../../../components/cards"
 import classNames from "classnames"
-import { ListHeader, Modal } from "../../../../components"
+import { Modal } from "../../../../components"
 import { TaskCreateForm } from "../task-create-form"
+import { FormattedMessage } from "react-intl"
 
 const filterContainer = [
   "grid",
   "grid-cols-1",
-  "lg:grid-cols-[1fr_1fr_2fr]",
+  "lg:grid-cols-[1fr_1fr_1fr_2fr]",
   "gap-4",
   "justify-between",
   "items-center",
+  "mb-10",
 ]
 
 const statusOptions: Task["status"][] = [
@@ -41,7 +38,6 @@ const statusOptions: Task["status"][] = [
 const TasksFilter: FC = () => {
   const dispatch = useAppDispatch()
   const users = useAppSelector(selectUsers)
-  const filteredTasks = useAppSelector(selectFilteredTasks)
 
   const [search, setSearch] = useState<string>()
   const [selectedUserId, setSelectedUserId] = useState<User["id"]>()
@@ -67,28 +63,29 @@ const TasksFilter: FC = () => {
   return (
     <>
       <div className={classNames(filterContainer)}>
-        <div className="w-full max-w-md px-4">
-          <Field>
-            <Input
-              value={search}
-              onChange={handleSearchTerm}
-              className={classNames(
-                "block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-gray-900",
-                "relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6",
-                "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
-              )}
-            />
-          </Field>
-        </div>
+        <Input
+          value={search}
+          onChange={handleSearchTerm}
+          className={classNames(
+            "block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-gray-900",
+            "relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6",
+            "focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25",
+          )}
+        />
 
         <Listbox value={statusSelected} onChange={setstatusSelected}>
           <div className="relative">
             <ListboxButton className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
               <span className="flex items-center">
                 <span className="ml-3 block truncate">
-                  {!statusSelected
-                    ? "All statuses"
-                    : statusSelected || "Select status"}
+                  {!statusSelected ? (
+                    <FormattedMessage id="all-statuses" />
+                  ) : (
+                    statusSelected
+                      ?.replace("-", " ")
+                      .replace(/\b\w/g, char => char.toUpperCase()) ||
+                    "Select status"
+                  )}
                 </span>
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -109,7 +106,7 @@ const TasksFilter: FC = () => {
               >
                 <div className="flex items-center">
                   <span className="ml-3 block truncate font-normal group-data-[selected]:font-semibold">
-                    {"All status"}
+                    <FormattedMessage id="all-statuses" />
                   </span>
                 </div>
 
@@ -119,7 +116,6 @@ const TasksFilter: FC = () => {
               </ListboxOption>
 
               {statusOptions.map(status => (
-                //WIP - fix user name on select
                 <ListboxOption
                   key={status}
                   value={status}
@@ -127,7 +123,9 @@ const TasksFilter: FC = () => {
                 >
                   <div className="flex items-center">
                     <span className="ml-3 block truncate font-normal group-data-[selected]:font-semibold">
-                      {status}
+                      {status
+                        ?.replace("-", " ")
+                        .replace(/\b\w/g, char => char.toUpperCase())}
                     </span>
                   </div>
 
@@ -145,9 +143,12 @@ const TasksFilter: FC = () => {
             <ListboxButton className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
               <span className="flex items-center">
                 <span className="ml-3 block truncate">
-                  {!selectedUserId
-                    ? "All users"
-                    : selectedUserId || "Select user"}
+                  {!selectedUserId ? (
+                    <FormattedMessage id="all-users" />
+                  ) : (
+                    users.find(user => user.id === selectedUserId)?.name ||
+                    "Select user"
+                  )}
                 </span>
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
@@ -168,7 +169,7 @@ const TasksFilter: FC = () => {
               >
                 <div className="flex items-center">
                   <span className="ml-3 block truncate font-normal group-data-[selected]:font-semibold">
-                    {"All users"}
+                    <FormattedMessage id="all-users" />
                   </span>
                 </div>
 
@@ -199,30 +200,10 @@ const TasksFilter: FC = () => {
         </Listbox>
 
         <div className="ml-auto">
-          <Modal label={"Add task"}>
+          <Modal label={<FormattedMessage id="add-task" />}>
             <TaskCreateForm />
           </Modal>
         </div>
-      </div>
-
-      <ListHeader type="tasks-list" />
-      <div className="mt-10">
-        {filteredTasks.length > 0 ? (
-          filteredTasks.map(task => (
-            <Fragment key={task.id}>
-              <ListCard
-                id={task.id}
-                name={task.name}
-                status={task.status}
-                userId={task.userId}
-                description={task.description}
-                priority={task.priority}
-              />
-            </Fragment>
-          ))
-        ) : (
-          <p>No tasks found</p>
-        )}
       </div>
     </>
   )

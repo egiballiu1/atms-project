@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Layout } from "../../components/layout"
-import { TaskGrid, TasksFilter, UsersList } from "./components"
+import { TaskGrid, TasksFilter, TasksList, UsersList } from "./components"
 import classNames from "classnames"
 import { useAppSelector } from "../../app/hooks"
 import { selectUser } from "../../store/slices/auth"
@@ -23,9 +23,19 @@ const DashboardPage = () => {
   const renderContent = () => {
     switch (activeMenu) {
       case "list":
-        return <TasksFilter />
+        return (
+          <>
+            <TasksFilter />
+            <TasksList />
+          </>
+        )
       case "grid":
-        return <TaskGrid />
+        return (
+          <>
+            <TasksFilter />
+            <TaskGrid />
+          </>
+        )
       case "users":
         return <UsersList />
     }

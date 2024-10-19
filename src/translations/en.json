@@ -10,5 +10,10 @@
   "user-header-list-username": "Username",
   "user-header-list-email": "Email",
   "user-header-list-role": "Role",
-  "user-header-list-date-avatar": "Avatar"
+  "user-header-list-date-avatar": "Avatar",
+  "no-tasks-found": "We couldn't find any task with the filters applied!",
+  "all-statuses": "All statuses",
+  "all-users": "All users",
+  "add-task": "Add task",
+  "log-out":"Log out"
 }

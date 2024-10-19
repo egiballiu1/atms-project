@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { logout, selectIsAuthenticated } from "../../store/slices/auth"
 import { Button } from "../button"
 import { LanguageSelect } from "../language-select"
+import { FormattedMessage } from "react-intl"
 
 const container = [
   "px-4",
@@ -47,7 +48,7 @@ const Header = () => {
             <Button
               buttonStyle="secondary"
               onClick={handleLogout}
-              label="Log Out"
+              label={<FormattedMessage id="log-out" />}
             />
           )}
         </div>

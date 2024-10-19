@@ -1,6 +1,6 @@
 {
-  "hp-hero-title": "Advanced Tasks Management System Italiano",
-  "hp-hero-subtitle": "Master Your Tasks, Optimize Your Time. italiano",
+  "hp-hero-title": "Sistema di gestione delle attività avanzate",
+  "hp-hero-subtitle": "Gestisci al meglio i tuoi compiti, ottimizza il tuo tempo.",
   "task-header-list-title": "Titolo",
   "task-header-list-assigned-to": "Assegnato a",
   "task-header-list-status": "Stato",
@@ -10,5 +10,10 @@
   "user-header-list-username": "Username",
   "user-header-list-email": "Email",
   "user-header-list-role": "Rolo",
-  "user-header-list-date-avatar": "Avatar"
+  "user-header-list-date-avatar": "Avatar",
+  "no-tasks-found": "Non siamo riusciti a trovare alcuna attività con i filtri applicati!",
+  "all-statuses": "Tutti gli stati",
+  "all-users": "Tutti gli utenti",
+  "add-task": "Aggiungi attività",
+  "log-out": "Esci"
 }
