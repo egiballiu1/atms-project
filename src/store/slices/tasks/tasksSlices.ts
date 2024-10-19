@@ -1,14 +1,17 @@
 import { createAppSlice } from "../../../app/createAppSlice"
 import type { Task } from "../../../types"
 import * as TaskService from "../../../services/tasks"
+import type { PayloadAction } from "@reduxjs/toolkit"
 
 type TasksSliceState = {
+  filteredTasks: Task[]
   tasks: Task[]
   status: "idle" | "loading" | "failed"
   error?: string | null
 }
 
 const initialState: TasksSliceState = {
+  filteredTasks: [],
   tasks: [],
   status: "idle",
   error: null,
@@ -21,7 +24,7 @@ const tasksSlices = createAppSlice({
     createTask: create.asyncThunk(
       async (task: Omit<Task, "id">) => {
         const createdDate = new Date()
-        const response = await TaskService.createTask({...task, createdDate})
+        const response = await TaskService.createTask({ ...task, createdDate })
 
         return response
       },
@@ -52,6 +55,7 @@ const tasksSlices = createAppSlice({
         fulfilled: (state, action) => {
           state.status = "idle"
           state.tasks = action.payload
+          state.filteredTasks = action.payload
         },
         rejected: (state, action) => {
           state.status = "failed"
@@ -101,20 +105,30 @@ const tasksSlices = createAppSlice({
         },
       },
     ),
+    filterTasks: create.reducer(
+      (state, action: PayloadAction<{ status?: Task["status"] }>) => {
+        const { status } = action.payload
+
+        if (!status) {
+          state.filteredTasks = state.tasks
+          return
+        }
+
+        state.filteredTasks = state.tasks.filter(task => task.status === status)
+      },
+    ),
   }),
   selectors: {
     selectTasks: state => state.tasks,
     selectStatus: state => state.status,
     selectError: state => state.error,
-    selectTasksByStatus: (state, status: Task["status"]) =>
-      state.tasks.filter(task => task.status === status),
-    selectTasksBySearchTerm:(state, searchTerm:string ) => state.tasks.filter(task =>
-      task.name.toLowerCase().includes(searchTerm.toLowerCase()))
-  }
+    selectFilteredTasks: state => state.filteredTasks,
+  },
 })
 
-const { createTask, getTasks, updateTask, deleteTask } = tasksSlices.actions
-const { selectTasks, selectStatus, selectError, selectTasksByStatus, selectTasksBySearchTerm } =
+const { createTask, getTasks, updateTask, deleteTask, filterTasks } =
+  tasksSlices.actions
+const { selectTasks, selectStatus, selectError, selectFilteredTasks } =
   tasksSlices.selectors
 
 export {
@@ -125,11 +139,11 @@ export {
   getTasks,
   updateTask,
   deleteTask,
+  filterTasks,
 
   // selectors
   selectTasks,
   selectStatus,
   selectError,
-  selectTasksByStatus,
-  selectTasksBySearchTerm
+  selectFilteredTasks,
 }

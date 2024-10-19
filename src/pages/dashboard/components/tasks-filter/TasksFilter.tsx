@@ -8,9 +8,9 @@ import { Field, Input } from "@headlessui/react"
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import {
+  filterTasks,
   getTasks,
-  selectTasks,
-  selectTasksBySearchTerm,
+  selectFilteredTasks,
 } from "../../../../store/slices/tasks"
 import { getUsers, selectUsers } from "../../../../store/slices/users"
 import type { FC } from "react"
@@ -43,14 +43,12 @@ const TasksFilter: FC = () => {
 
   const dispatch = useAppDispatch()
   const users = useAppSelector(selectUsers)
-  const tasks = useAppSelector(selectTasks)
-  const searchTasks = useAppSelector(state =>
-    selectTasksBySearchTerm(state, searchTerm),
-  )
+  const filteredTasks = useAppSelector(selectFilteredTasks)
 
-  const [filteredTasks, setFilteredTasks] = useState(tasks)
-  const [statusSelected, setstatusSelected] = useState("all-statuses")
   const [userSelected, setUserSelected] = useState<User["id"]>("all-users")
+  const [statusSelected, setstatusSelected] = useState<
+    Task["status"] | "all-statuses"
+  >("all-statuses")
 
   useEffect(() => {
     dispatch(getUsers())
@@ -63,21 +61,14 @@ const TasksFilter: FC = () => {
     setSearchTerm(e.target.value)
   }
 
-  //WIP
   useEffect(() => {
-    const filtered = tasks.filter(task => {
-      const statusMatch =
-        statusSelected === "all-statuses"
-          ? true
-          : task.status === statusSelected
-      const userMatch =
-        userSelected === "all-users" ? true : task.userId === userSelected
+    const payload = {} as any
+    if (statusSelected !== "all-statuses") payload.status = statusSelected
+    if (searchTerm) payload.searchTerm = searchTerm
 
-      return statusMatch && userMatch
-    })
-
-    setFilteredTasks(filtered)
-  }, [statusSelected, userSelected, tasks])
+    dispatch(filterTasks(payload))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [statusSelected, searchTerm])
 
   return (
     <>
