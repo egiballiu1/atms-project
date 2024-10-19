@@ -7,6 +7,7 @@ import {
   createTask,
   selectStatus,
   selectError,
+  selectTasks,
 } from "../../../../store/slices/tasks"
 import type { Task } from "../../../../types"
 
@@ -16,6 +17,7 @@ const TaskCreateForm: FC = () => {
   const users = useAppSelector(selectUsers)
   const status = useAppSelector(selectStatus)
   const error = useAppSelector(selectError)
+  const tasks = useAppSelector(selectTasks)
 
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [formData, setFormData] = useState<Omit<Task, "id">>({
@@ -24,7 +26,10 @@ const TaskCreateForm: FC = () => {
     status: "to-do",
     name: "",
     description: "",
+    createdDate: undefined,
   })
+
+  console.log(tasks)
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -34,10 +39,12 @@ const TaskCreateForm: FC = () => {
     const { name, value } = e.target
     setFormData({
       ...formData,
+      createdDate: formData.createdDate,
       [name]: value,
     })
   }
 
+  console.log(formData)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Form Data:", formData)
@@ -49,6 +56,7 @@ const TaskCreateForm: FC = () => {
       status: "to-do",
       name: "",
       description: "",
+      createdDate: undefined,
     })
   }
 

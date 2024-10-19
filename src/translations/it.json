@@ -1,4 +1,14 @@
 {
   "hp-hero-title": "Advanced Tasks Management System Italiano",
-  "hp-hero-subtitle": "Master Your Tasks, Optimize Your Time. italiano"
+  "hp-hero-subtitle": "Master Your Tasks, Optimize Your Time. italiano",
+  "task-header-list-title": "Titolo",
+  "task-header-list-assigned-to": "Assegnato a",
+  "task-header-list-status": "Stato",
+  "task-header-list-description": "Contenuto",
+  "task-header-list-date-created": "Creato a",
+  "task-header-list-priority": "Priorità",
+  "user-header-list-username": "Username",
+  "user-header-list-email": "Email",
+  "user-header-list-role": "Rolo",
+  "user-header-list-date-avatar": "Avatar"
 }

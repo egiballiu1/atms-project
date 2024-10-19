@@ -18,7 +18,7 @@ import { Fragment, useEffect, useState } from "react"
 import type { Task, User } from "../../../../types"
 import { ListCard } from "../../../../components/cards"
 import classNames from "classnames"
-import { Modal } from "../../../../components"
+import { ListHeader, Modal } from "../../../../components"
 import { TaskCreateForm } from "../task-create-form"
 
 const filterContainer = [
@@ -77,10 +77,7 @@ const TasksFilter: FC = () => {
     })
 
     setFilteredTasks(filtered)
-
   }, [statusSelected, userSelected, tasks])
-
-  console.log(JSON.stringify(searchTasks.length))
 
   return (
     <>
@@ -223,6 +220,7 @@ const TasksFilter: FC = () => {
         </div>
       </div>
 
+      <ListHeader type="tasks-list" />
       <div className="mt-10">
         {filteredTasks.length > 0 ? (
           filteredTasks.map(task => (

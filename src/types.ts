@@ -5,6 +5,7 @@ type Task = {
   status?: "to-do" | "in-progress" | "blocked" | "testing" | "done"
   name: string
   description: string
+  createdDate? : Date
 }
 
 type User = {
@@ -15,4 +16,9 @@ type User = {
   avatar: string
 }
 
-export type { Task, User }
+type Language = {
+  id:string
+  code:string
+}
+
+export type { Task, User, Language }

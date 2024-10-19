@@ -9,6 +9,8 @@ import { IntlProvider } from "react-intl"
 import messagesIt from "./translations/it.json"
 import messagesDe from "./translations/de.json"
 import messagesEn from "./translations/en.json"
+import { useAppSelector } from "./app/hooks"
+import { selectLanguage } from "./store/slices/languages"
 
 const container = document.getElementById("root")
 
@@ -21,19 +23,24 @@ if (container) {
     en: messagesEn,
   }
 
-  const language = navigator.language.split(/[-_]/)[0] as "de" | "it" | "en"
+  const RootApp = () => {
+    const language = navigator.language.split(/[-_]/)[0] as "de" | "it" | "en"
 
-  root.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <BrowserRouter>
-          <IntlProvider locale={language} messages={messages[language]}>
-            <App />
-          </IntlProvider>
-        </BrowserRouter>
-      </Provider>
-    </React.StrictMode>,
-  )
+    // const locale = useAppSelector(selectLanguage) as "de" | "it" | "en"
+    return (
+      <React.StrictMode>
+        <Provider store={store}>
+          <BrowserRouter>
+            <IntlProvider locale={language} messages={messages[language]}>
+              <App />
+            </IntlProvider>
+          </BrowserRouter>
+        </Provider>
+      </React.StrictMode>
+    )
+  }
+
+  root.render(<RootApp />)
 } else {
   throw new Error(
     "Root element with ID 'root' was not found in the document. Ensure there is a corresponding HTML element with the ID 'root' in your HTML file.",

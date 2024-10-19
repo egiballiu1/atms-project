@@ -18,7 +18,7 @@ const card = [
   "rounded-xl",
   "w-auto",
   "cursor-pointer",
-  "mb-1",
+  "mb-2",
   "gap-2",
 ]
 

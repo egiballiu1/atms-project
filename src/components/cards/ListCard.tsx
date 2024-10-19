@@ -5,11 +5,12 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { selectUserById } from "../../store/slices/users"
 import { deleteTask } from "../../store/slices/tasks"
 import { XCircleIcon } from "@heroicons/react/20/solid"
+import { FormattedDate } from "react-intl"
 
 const card = [
   "grid",
   "grid-cols-2",
-  "lg:grid-cols-[1fr_0.8fr_0.8fr_2fr_0.2fr]",
+  "lg:grid-cols-[1fr_0.8fr_0.8fr_1fr_0.8fr_0.2fr]",
   "justify-between",
   "items-center",
   "border",
@@ -19,7 +20,7 @@ const card = [
   "rounded-xl",
   "w-auto",
   "cursor-pointer",
-  "mb-1",
+  "mb-2",
   "gap-2",
 ]
 
@@ -32,6 +33,7 @@ const ListCard: FC<Task> = ({
   userId,
   status,
   priority,
+  createdDate,
 }) => {
   const statusBg =
     status === "to-do"
@@ -70,7 +72,7 @@ const ListCard: FC<Task> = ({
         <h3 className={classNames(nameStyle)}>{name}</h3>
         <div className="flex flex-row items-center gap-2">
           <p className="lg:line-clamp-1 line-clamp-2">{user?.name}</p>
-          <img src={user?.avatar} alt={'avatar'} width={40} height={40} />
+          <img src={user?.avatar} alt={"avatar"} width={40} height={40} />
         </div>
         <span className={`${statusBg} rounded-md w-fit p-1 uppercase`}>
           {status ? status : "to-do"}
@@ -78,8 +80,14 @@ const ListCard: FC<Task> = ({
         <p className="lg:line-clamp-1 line-clamp-2 order-5 lg:order-4">
           {description}
         </p>
+        <FormattedDate
+          value={createdDate}
+          day="numeric"
+          month="long"
+          year="numeric"
+        />
         <span
-          className={`${priorityBg} w-4 h-4 rounded-full order-4 lg:order-4`}
+          className={`${priorityBg} w-4 h-4 rounded-full order-4`}
         />
       </div>
     </div>
