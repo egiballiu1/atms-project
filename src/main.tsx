@@ -5,35 +5,18 @@ import App from "./App"
 import { store } from "./app/store"
 import "./index.css"
 import { BrowserRouter } from "react-router-dom"
-import { IntlProvider } from "react-intl"
-import messagesIt from "./translations/it.json"
-import messagesDe from "./translations/de.json"
-import messagesEn from "./translations/en.json"
-import { useAppSelector } from "./app/hooks"
-import { selectLanguage } from "./store/slices/languages"
 
 const container = document.getElementById("root")
 
 if (container) {
   const root = createRoot(container)
 
-  const messages: Record<"de" | "it" | "en", Record<string, string>> = {
-    de: messagesDe,
-    it: messagesIt,
-    en: messagesEn,
-  }
-
   const RootApp = () => {
-    const language = navigator.language.split(/[-_]/)[0] as "de" | "it" | "en"
-
-    // const locale = useAppSelector(selectLanguage) as "de" | "it" | "en"
     return (
       <React.StrictMode>
         <Provider store={store}>
           <BrowserRouter>
-            <IntlProvider locale={language} messages={messages[language]}>
-              <App />
-            </IntlProvider>
+            <App />
           </BrowserRouter>
         </Provider>
       </React.StrictMode>
