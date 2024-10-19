@@ -30,21 +30,20 @@ const filterContainer = [
   "items-center",
 ]
 
+const statusOptions: Task["status"][] = [
+  "to-do",
+  "in-progress",
+  "blocked",
+  "testing",
+  "done",
+]
+
 const TasksFilter: FC = () => {
-  const statusOptions: Task["status"][] = [
-    "to-do",
-    "in-progress",
-    "blocked",
-    "testing",
-    "done",
-  ]
-
-  const [searchTerm, setSearchTerm] = useState("")
-
   const dispatch = useAppDispatch()
   const users = useAppSelector(selectUsers)
   const filteredTasks = useAppSelector(selectFilteredTasks)
 
+  const [search, setSearch] = useState("")
   const [userSelected, setUserSelected] = useState<User["id"]>("all-users")
   const [statusSelected, setstatusSelected] = useState<
     Task["status"] | "all-statuses"
@@ -57,18 +56,17 @@ const TasksFilter: FC = () => {
   }, [])
 
   const handleSearchTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value)
-    setSearchTerm(e.target.value)
+    setSearch(e.target.value)
   }
 
   useEffect(() => {
-    const payload = {} as any
+    const payload = {} as { status?: Task["status"]; search?: string }
     if (statusSelected !== "all-statuses") payload.status = statusSelected
-    if (searchTerm) payload.searchTerm = searchTerm
+    if (search) payload.search = search
 
     dispatch(filterTasks(payload))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [statusSelected, searchTerm])
+  }, [statusSelected, search])
 
   return (
     <>
@@ -76,7 +74,7 @@ const TasksFilter: FC = () => {
         <div className="w-full max-w-md px-4">
           <Field>
             <Input
-              value={searchTerm}
+              value={search}
               onChange={handleSearchTerm}
               className={classNames(
                 "block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-gray-900",

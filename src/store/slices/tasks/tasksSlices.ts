@@ -106,15 +106,30 @@ const tasksSlices = createAppSlice({
       },
     ),
     filterTasks: create.reducer(
-      (state, action: PayloadAction<{ status?: Task["status"] }>) => {
-        const { status } = action.payload
+      (
+        state,
+        action: PayloadAction<{ status?: Task["status"]; search?: string }>,
+      ) => {
+        const { status, search } = action.payload
 
-        if (!status) {
+        if (!status && !search) {
           state.filteredTasks = state.tasks
           return
         }
 
-        state.filteredTasks = state.tasks.filter(task => task.status === status)
+        let filterTasks = state.tasks
+
+        if (status) {
+          filterTasks = state.tasks.filter(task => task.status === status)
+        }
+
+        if (search) {
+          filterTasks = filterTasks.filter(task =>
+            task.name.toLowerCase().includes(search.toLowerCase()),
+          )
+        }
+
+        state.filteredTasks = filterTasks
       },
     ),
   }),
