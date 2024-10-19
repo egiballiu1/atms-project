@@ -15,5 +15,6 @@
   "all-statuses": "All statuses",
   "all-users": "All users",
   "add-task": "Add task",
-  "log-out":"Log out"
+  "log-out":"Log out",
+  "no-tasks-found-grid":"No tasks"
 }

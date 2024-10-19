@@ -1,6 +1,5 @@
 import type { PayloadAction } from "@reduxjs/toolkit"
 import { createAppSlice } from "../../../app/createAppSlice"
-import type { Language } from "../../../types"
 
 type LanguageSliceState = {
   language: string

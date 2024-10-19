@@ -17,23 +17,24 @@ const TasksList: FC = () => {
     <>
       <ListHeader type="tasks-list" />
 
-        {filteredTasks.length > 0 ? (
-          filteredTasks.map(task => (
-            <Fragment key={task.id}>
-              <ListCard
-                id={task.id}
-                name={task.name}
-                status={task.status}
-                userId={task.userId}
-                description={task.description}
-                priority={task.priority}
-              />
-            </Fragment>
-          ))
-        ) : (
-          <p><FormattedMessage id="no-tasks-found" /></p>
-        )}
-  
+      {filteredTasks.length > 0 ? (
+        filteredTasks.map(task => (
+          <Fragment key={task.id}>
+            <ListCard
+              id={task.id}
+              name={task.name}
+              status={task.status}
+              userId={task.userId}
+              description={task.description}
+              priority={task.priority}
+            />
+          </Fragment>
+        ))
+      ) : (
+        <p>
+          <FormattedMessage id="no-tasks-found" />
+        </p>
+      )}
     </>
   )
 }

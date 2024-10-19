@@ -1,9 +1,10 @@
+import { type FC } from "react"
+import { type Task } from "../../types"
 import classNames from "classnames"
-import type { FC } from "react"
-import type { Task } from "../../types"
 import { XCircleIcon } from "@heroicons/react/20/solid"
-import { useAppDispatch } from "../../app/hooks"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import { deleteTask } from "../../store/slices/tasks"
+import { selectUserById } from "../../store/slices/users"
 
 const card = [
   "flex",
@@ -24,12 +25,12 @@ const card = [
 const titleStyle = ["font-bold", "text-black", "pb-2"]
 
 const GridCard: FC<Task> = ({
+  id,
+  userId,
   name,
   description,
-  userId,
   status,
   priority,
-  id,
 }) => {
   const statusBg =
     status === "to-do"
@@ -54,6 +55,9 @@ const GridCard: FC<Task> = ({
   const handleDeleteTask = (id: string) => {
     dispatch(deleteTask(id))
   }
+
+  const user = useAppSelector(state => selectUserById(state, userId))
+
   return (
     <div className="relative group">
       <div className={classNames(card)}>
@@ -61,15 +65,18 @@ const GridCard: FC<Task> = ({
           className="absolute -top-2 -right-2 w-6 h-6 text-gray-400 hover:text-red-500 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
           onClick={() => handleDeleteTask(id)}
         />
-        <div className="grid grid-cols-[1fr_50px] gap-3">
-          <h3 className={classNames(titleStyle)}>{name}</h3>
-          <img src={userId} alt={name} width={40} height={40} />
-        </div>
+        <h3 className={classNames(titleStyle)}>{name}</h3>
         <p className="line-clamp-2">{description}</p>
+
         <div className="flex justify-between items-center">
           <span className={`${statusBg} rounded-md w-fit p-1 uppercase`}>
             {status ? status : "to-do"}
           </span>
+          <div>
+            <img src={user?.avatar} alt={name} width={40} height={40} />
+            <p className="lg:line-clamp-1 line-clamp-2">{user?.name}</p>
+          </div>
+
           <span className={`${priorityBg} w-4 h-4 rounded-full`} />
         </div>
       </div>

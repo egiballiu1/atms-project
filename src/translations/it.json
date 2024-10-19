@@ -15,5 +15,6 @@
   "all-statuses": "Tutti gli stati",
   "all-users": "Tutti gli utenti",
   "add-task": "Aggiungi attività",
-  "log-out": "Esci"
+  "log-out": "Esci",
+  "no-tasks-found-grid":"No attività"
 }

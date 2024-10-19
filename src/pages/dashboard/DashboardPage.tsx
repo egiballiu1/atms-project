@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Layout } from "../../components/layout"
-import { TaskGrid, TasksFilter, TasksList, UsersList } from "./components"
+import { TasksFilter, TasksGrid, TasksList, UsersList } from "./components"
 import classNames from "classnames"
 import { useAppSelector } from "../../app/hooks"
 import { selectUser } from "../../store/slices/auth"
@@ -33,7 +33,7 @@ const DashboardPage = () => {
         return (
           <>
             <TasksFilter />
-            <TaskGrid />
+            <TasksGrid />
           </>
         )
       case "users":
@@ -44,7 +44,7 @@ const DashboardPage = () => {
   return (
     <Layout>
       <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] lg:h-screen ">
-        <div className="bg-gray-lighter text-black font-bold lg:sticky lg:top-[100px]">
+        <div className="bg-gray-lighter text-black font-bold lg:sticky lg:top-[100px] lg:left-0 z-50">
           <ul
             className={`grid ${user?.role === "admin" ? "grid-cols-3" : "grid-cols-2"} lg:grid-cols-1`}
           >
@@ -83,7 +83,7 @@ const DashboardPage = () => {
           </ul>
         </div>
 
-        <div className="p-8">{renderContent()}</div>
+        <div className="p-8 w-auto overflow-x-hidden">{renderContent()}</div>
       </div>
     </Layout>
   )

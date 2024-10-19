@@ -15,5 +15,6 @@
   "all-statuses": "Alle Status",
   "all-users": "Alle Benutzer",
   "add-task": "Aufgabe hinzufügen",
-  "log-out": "Aus Konto abmelden"
+  "log-out": "Aus Konto abmelden",
+  "no-tasks-found-grid": "Mit den angewendeten"
 }
