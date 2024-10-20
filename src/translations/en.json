@@ -21,5 +21,7 @@
   "cancel": "Cancel",
   "edit": "Edit",
   "chart-tasks-by-status": "Group tasks by status : ",
-  "chart-tasks-by-priority": "Group tasks by priority : "
+  "chart-tasks-by-priority": "Group tasks by priority : ",
+  "user-update-success":"Status updated successfully",
+  "user-update-error":"Could not update status. Try again later!"
 }

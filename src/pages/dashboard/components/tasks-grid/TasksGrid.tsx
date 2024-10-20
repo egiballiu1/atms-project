@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { Fragment, useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import type { Task } from "../../../../types"
 import { getTasks, selectFilteredTasks } from "../../../../store/slices/tasks"
@@ -48,14 +48,16 @@ const TasksGrid = () => {
           </h2>
           {groupedTasksByStatus[status]?.length ? (
             groupedTasksByStatus[status].map(task => (
-              <GridCard
-                id={task.id}
-                userId={task.userId}
-                status={task.status}
-                priority={task.priority}
-                name={task.name}
-                description={task.description}
-              />
+              <Fragment key={task.id}>
+                <GridCard
+                  id={task.id}
+                  userId={task.userId}
+                  status={task.status}
+                  priority={task.priority}
+                  name={task.name}
+                  description={task.description}
+                />
+              </Fragment>
             ))
           ) : (
             <p className="text-gray-500">

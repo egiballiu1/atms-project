@@ -61,7 +61,7 @@ const usersSlices = createAppSlice({
       },
     ),
     getUser: create.asyncThunk(
-      async (id: string) => {
+    async (id: string) => {
         const response = await UserService.getUser(id)
 
         return response

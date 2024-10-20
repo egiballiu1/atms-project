@@ -1,13 +1,8 @@
 import { XCircleIcon } from "@heroicons/react/20/solid"
 import classNames from "classnames"
 import { useAppDispatch } from "../../../../app/hooks"
-import { type FC, useEffect, useState } from "react"
-import {
-  deleteUser,
-  getUsers,
-  getUser,
-  updateUser,
-} from "../../../../store/slices/users"
+import { type FC, useState } from "react"
+import { deleteUser, getUser, updateUser } from "../../../../store/slices/users"
 import type { User } from "../../../../types"
 import { Button } from "../../../../components"
 import { FormattedMessage } from "react-intl"
@@ -16,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion"
 const card = [
   "grid",
   "grid-cols-2",
-  "lg:grid-cols-5",
+  "lg:grid-cols-[1fr_1fr_1fr_1fr_0.5fr]",
   "justify-between",
   "items-center",
   "border",
@@ -46,7 +41,7 @@ const nameStyle = ["font-bold", "text-black"]
 const UserListItem: FC<User> = ({ id, name, email, role, avatar }) => {
   const dispatch = useAppDispatch()
 
-  const [isOpen, setIsOpen] = useState(false)
+  const [openToUpdate, setOpenToUpdate] = useState(false)
   const [formData, setFormData] = useState<User>({
     id: id,
     name: name,
@@ -55,17 +50,12 @@ const UserListItem: FC<User> = ({ id, name, email, role, avatar }) => {
     avatar: avatar,
   })
 
-  useEffect(() => {
-    dispatch(getUsers())
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   const handleDeleteUser = (id: string) => {
     dispatch(deleteUser(id))
   }
 
   const handleAccordion = (id: string) => {
-    setIsOpen(!isOpen)
+    setOpenToUpdate(!openToUpdate)
     dispatch(getUser(id))
   }
 
@@ -82,7 +72,7 @@ const UserListItem: FC<User> = ({ id, name, email, role, avatar }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     dispatch(updateUser(formData))
-    setIsOpen(false)
+    setOpenToUpdate(false)
   }
 
   return (
@@ -101,7 +91,7 @@ const UserListItem: FC<User> = ({ id, name, email, role, avatar }) => {
         </div>
       </div>
       <AnimatePresence>
-        {isOpen && (
+        {openToUpdate && (
           <motion.div
             className={classNames(accordion)}
             initial={{ opacity: 0, maxHeight: 0 }}
@@ -147,7 +137,7 @@ const UserListItem: FC<User> = ({ id, name, email, role, avatar }) => {
                 <Button
                   buttonStyle="secondary"
                   label={<FormattedMessage id="cancel" />}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => setOpenToUpdate(false)}
                 />
                 <Button
                   buttonStyle="primary"

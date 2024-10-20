@@ -7,7 +7,6 @@ import {
   createTask,
   selectStatus,
   selectError,
-  selectTasks,
 } from "../../../../store/slices/tasks"
 import type { Task } from "../../../../types"
 
@@ -17,7 +16,6 @@ const TaskCreateForm: FC = () => {
   const users = useAppSelector(selectUsers)
   const status = useAppSelector(selectStatus)
   const error = useAppSelector(selectError)
-  const tasks = useAppSelector(selectTasks)
 
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [formData, setFormData] = useState<Omit<Task, "id">>({
@@ -28,8 +26,6 @@ const TaskCreateForm: FC = () => {
     description: "",
     createdDate: undefined,
   })
-
-  console.log(tasks)
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -44,7 +40,6 @@ const TaskCreateForm: FC = () => {
     })
   }
 
-  console.log(formData)
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Form Data:", formData)
@@ -147,9 +142,9 @@ const TaskCreateForm: FC = () => {
             onChange={handleChange}
             className="block w-full rounded-md border-0 p-1.5 min-h-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           >
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
             <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
           </select>
         </label>
 
@@ -166,8 +161,8 @@ const TaskCreateForm: FC = () => {
             onChange={handleChange}
             className="block w-full rounded-md border-0 p-1.5 min-h-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           >
-            <option value="to-do">To-Do</option>
-            <option value="in-progress">In-Progress</option>
+            <option value="to-do">To Do</option>
+            <option value="in-progress">In Progress</option>
             <option value="blocked">Blocked</option>
             <option value="testing">Testing</option>
             <option value="done">Done</option>

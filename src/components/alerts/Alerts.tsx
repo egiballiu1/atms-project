@@ -1,11 +1,11 @@
 import classNames from "classnames"
-import { useState, type FC } from "react"
+import { type ReactNode, useState, type FC } from "react"
 import { XMarkIcon } from "@heroicons/react/20/solid"
 
 type AlertProps = {
   alertType: "info" | "error" | "success" | "loading"
   title?: string
-  description?: string
+  description?: string | ReactNode
 }
 
 const alert = [
@@ -19,6 +19,7 @@ const alert = [
   "gap-2",
   "shadow-lg",
   "transition-all",
+  "z-20"
 ]
 
 const Alerts: FC<AlertProps> = ({ alertType, title, description }) => {

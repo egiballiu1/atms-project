@@ -30,7 +30,7 @@ const ListHeader: FC<ListHeaderProps> = ({ type }) => {
     <div
       className={classNames(
         card,
-        "lg:grid-cols-[1fr_0.8fr_0.8fr_1fr_0.8fr_0.2fr]",
+        "lg:grid-cols-[1fr_0.8fr_0.8fr_1fr_0.8fr_0.2fr_0.4fr]",
       )}
     >
       <h3 className={classNames(text)}>
@@ -43,17 +43,17 @@ const ListHeader: FC<ListHeaderProps> = ({ type }) => {
         <FormattedMessage id="task-header-list-status" />
       </h3>
       <h3 className={classNames(text)}>
-        <FormattedMessage id="task-header-list-date-created" />
+        <FormattedMessage id="task-header-list-description" />
       </h3>
       <h3 className={classNames(text)}>
-        <FormattedMessage id="task-header-list-description" />
+        <FormattedMessage id="task-header-list-date-created" />
       </h3>
       <h3 className={classNames(text)}>
         <FormattedMessage id="task-header-list-priority" />
       </h3>
     </div>
   ) : (
-    <div className={classNames(card, "grid-cols-5")}>
+    <div className={classNames(card, "grid-cols-[1fr_1fr_1fr_1fr_0.5fr]")}>
       <h3 className={classNames(text)}>
         <FormattedMessage id="user-header-list-username" />
       </h3>

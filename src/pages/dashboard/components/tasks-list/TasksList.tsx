@@ -1,6 +1,9 @@
 import { useEffect, useState, type FC } from "react"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
-import { getTasks, selectFilteredTasks } from "../../../../store/slices/tasks"
+import {
+  getTasks,
+  selectFilteredTasks,
+} from "../../../../store/slices/tasks"
 import { ListCard, ListHeader } from "../../../../components"
 import { FormattedMessage } from "react-intl"
 import { Reorder } from "framer-motion"

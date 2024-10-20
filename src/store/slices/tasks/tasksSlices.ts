@@ -63,6 +63,26 @@ const tasksSlices = createAppSlice({
         },
       },
     ),
+    getTask: create.asyncThunk(
+      async (id: string) => {
+        const response = await TaskService.getTask(id)
+
+        return response
+      },
+      {
+        pending: state => {
+          state.status = "loading"
+        },
+        fulfilled: (state, action) => {
+          state.status = "idle"
+          state.tasks.push(action.payload)
+        },
+        rejected: (state, action) => {
+          state.status = "failed"
+          state.error = action.error.message
+        },
+      },
+    ),
     updateTask: create.asyncThunk(
       async (task: Task) => {
         const response = await TaskService.updateTask(task)
@@ -75,8 +95,8 @@ const tasksSlices = createAppSlice({
         },
         fulfilled: (state, action) => {
           state.status = "idle"
-          state.tasks = state.tasks.map(task =>
-            task.id === action.payload.id ? action.payload : task,
+          state.filteredTasks = state.filteredTasks.map(filterdTask =>
+            filterdTask.id === action.payload.id ? action.payload : filterdTask,
           )
         },
         rejected: (state, action) => {
@@ -145,13 +165,16 @@ const tasksSlices = createAppSlice({
     selectTasks: state => state.tasks,
     selectStatus: state => state.status,
     selectError: state => state.error,
+    selectTaskById: (state, id: string) =>
+      state.tasks.find(task => task.id === id),
     selectFilteredTasks: state => state.filteredTasks,
   },
 })
 
-const { createTask, getTasks, updateTask, deleteTask, filterTasks } =
+const { createTask, getTasks, updateTask, deleteTask, filterTasks, getTask } =
   tasksSlices.actions
-const { selectTasks, selectStatus, selectError, selectFilteredTasks } =
+
+const { selectTasks, selectStatus, selectError, selectFilteredTasks, selectTaskById } =
   tasksSlices.selectors
 
 export {
@@ -163,10 +186,12 @@ export {
   updateTask,
   deleteTask,
   filterTasks,
+  getTask,
 
   // selectors
   selectTasks,
   selectStatus,
   selectError,
+  selectTaskById,
   selectFilteredTasks,
 }
