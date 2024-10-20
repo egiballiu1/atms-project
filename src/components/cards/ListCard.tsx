@@ -94,7 +94,7 @@ const ListCard: FC<Task> = ({
     dispatch(deleteTask(id))
   }
 
-  const handleAccordion = (id: string) => {
+  const handleAccordion = () => {
     setOpenToUpdate(!openToUpdate)
   }
 
@@ -166,7 +166,7 @@ const ListCard: FC<Task> = ({
           year="numeric"
         />
         <span className={`${priorityBg} w-4 h-4 rounded-full`} />
-        <div className="cursor-pointer" onClick={() => handleAccordion(id)}>
+        <div className="cursor-pointer" onClick={() => handleAccordion()}>
           <FormattedMessage id="edit" />
         </div>
       </div>

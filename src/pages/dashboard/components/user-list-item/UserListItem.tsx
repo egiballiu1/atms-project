@@ -2,7 +2,7 @@ import { XCircleIcon } from "@heroicons/react/20/solid"
 import classNames from "classnames"
 import { useAppDispatch } from "../../../../app/hooks"
 import { type FC, useState } from "react"
-import { deleteUser, getUser, updateUser } from "../../../../store/slices/users"
+import { deleteUser, updateUser } from "../../../../store/slices/users"
 import type { User } from "../../../../types"
 import { Button } from "../../../../components"
 import { FormattedMessage } from "react-intl"
@@ -54,9 +54,8 @@ const UserListItem: FC<User> = ({ id, name, email, role, avatar }) => {
     dispatch(deleteUser(id))
   }
 
-  const handleAccordion = (id: string) => {
+  const handleAccordion = () => {
     setOpenToUpdate(!openToUpdate)
-    dispatch(getUser(id))
   }
 
   const handleChange = (
@@ -86,7 +85,7 @@ const UserListItem: FC<User> = ({ id, name, email, role, avatar }) => {
         <span className="lg:line-clamp-1 line-clamp-2">{email}</span>
         <span className="lg:line-clamp-1 line-clamp-2 capitalize">{role}</span>
         <img src={avatar} alt={"user logo"} width={40} height={40} />
-        <div className="cursor-pointer" onClick={() => handleAccordion(id)}>
+        <div className="cursor-pointer" onClick={() => handleAccordion()}>
           <FormattedMessage id="edit" />
         </div>
       </div>

@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import { type ReactNode, useState, type FC } from "react"
+import { type ReactNode, useState, type FC, useEffect } from "react"
 import { XMarkIcon } from "@heroicons/react/20/solid"
 
 type AlertProps = {
@@ -19,7 +19,7 @@ const alert = [
   "gap-2",
   "shadow-lg",
   "transition-all",
-  "z-20"
+  "z-20",
 ]
 
 const Alerts: FC<AlertProps> = ({ alertType, title, description }) => {
@@ -38,6 +38,14 @@ const Alerts: FC<AlertProps> = ({ alertType, title, description }) => {
       : alertType === "error"
         ? "src/public/assets/icons/error.svg"
         : "src/public/assets/icons/success.svg"
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCloseAlert(true)
+    }, 5000)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   if (closeAlert) return null
 

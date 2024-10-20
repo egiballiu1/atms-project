@@ -7,11 +7,11 @@
   },
   "users": [
     {
-      "id": "a9a0",
-      "name": "Service",
-      "email": "x@gmail.com",
+      "id": "5ef7",
+      "name": "Beni",
+      "email": "beni@gmail.com",
       "role": "user",
-      "avatar": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&hairColor=Blonde&clotheType=BlazerShirt&eyeType=Happy"
+      "avatar": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&hairColor=Red&clotheType=GraphicShirt&eyeType=Squint"
     },
     {
       "id": "3b87",
@@ -19,27 +19,6 @@
       "email": "Rossi@gmail.con",
       "role": "user",
       "avatar": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&hairColor=SilverGray&clotheType=BlazerSweater&eyeType=Happy"
-    },
-    {
-      "id": "f548",
-      "name": "New",
-      "email": "egi.balliu@crispybacon.al",
-      "role": "admin",
-      "avatar": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&hairColor=SilverGray&clotheType=ShirtSlogan&eyeType=Surprised"
-    },
-    {
-      "id": "d38e",
-      "name": "lufthansa",
-      "email": "q@gmail.com",
-      "role": "user",
-      "avatar": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&hairColor=SilverGray&clotheType=ShirtSlogan&eyeType=Surprised"
-    },
-    {
-      "id": "5ef7",
-      "name": "Beni",
-      "email": "beni@gmail.com",
-      "role": "user",
-      "avatar": "https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&hairColor=Red&clotheType=GraphicShirt&eyeType=Squint"
     },
     {
       "id": "d153",
@@ -65,36 +44,28 @@
   ],
   "tasks": [
     {
-      "id": "0b91",
-      "userId": "3b87",
-      "priority": "high",
-      "status": "to-do",
-      "name": "Localization",
-      "description": "Add localization"
-    },
-    {
       "id": "15ca",
-      "userId": "a9a0",
-      "priority": "medium",
-      "status": "to-do",
+      "userId": "d153",
+      "priority": "high",
+      "status": "in-progress",
       "name": "Testing",
       "description": "Use Jest"
     },
     {
       "id": "26f4",
-      "userId": "d153",
-      "priority": "high",
+      "userId": "3b87",
+      "priority": "medium",
       "status": "in-progress",
       "name": "JWT",
-      "description": "Improve"
+      "description": "role-based access control"
     },
     {
       "id": "33ac",
       "userId": "d153",
       "priority": "high",
-      "status": "to-do",
+      "status": "blocked",
       "name": "Create (common)slice for users and tasks",
-      "description": ""
+      "description": "add content"
     },
     {
       "id": "c826",
@@ -102,50 +73,24 @@
       "priority": "low",
       "status": "done",
       "name": "Analysis and reports",
-      "description": ""
+      "description": "recharts package"
     },
     {
-      "id": "3fed",
+      "id": "9d3d",
+      "userId": "ffcd",
+      "priority": "high",
+      "status": "testing",
+      "name": "Add  Localization",
+      "description": "Internationalization and Localization"
+    },
+    {
+      "id": "a524",
       "userId": "9f0f",
-      "priority": "high",
+      "priority": "medium",
       "status": "to-do",
-      "name": "Set grid tasks on column",
-      "description": "urgent task"
-    },
-    {
-      "id": "eed3",
-      "userId": "3b87",
-      "priority": "high",
-      "status": "in-progress",
-      "name": "Test Alert notifications",
-      "description": ""
-    },
-    {
-      "id": "c849",
-      "userId": "f548",
-      "priority": "low",
-      "status": "to-do",
-      "name": "Test formatted Date",
-      "description": "",
-      "createdDate": "2024-10-18T23:36:42.862Z"
-    },
-    {
-      "id": "3543",
-      "userId": "3b87",
-      "priority": "high",
-      "status": "to-do",
-      "name": "s",
-      "description": "",
-      "createdDate": "2024-10-18T23:41:26.213Z"
-    },
-    {
-      "id": "356b",
-      "userId": "d153",
-      "priority": "low",
-      "status": "to-do",
-      "name": "ss",
-      "description": "",
-      "createdDate": "2024-10-18T23:43:23.066Z"
+      "name": "Task Management",
+      "description": "task creation, update, delete",
+      "createdDate": "2024-10-20T21:25:26.847Z"
     }
   ]
 }

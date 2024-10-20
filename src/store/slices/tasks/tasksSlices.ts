@@ -35,6 +35,7 @@ const tasksSlices = createAppSlice({
         fulfilled: (state, action) => {
           state.status = "idle"
           state.tasks.push(action.payload)
+          state.filteredTasks.push(action.payload)
         },
         rejected: (state, action) => {
           state.status = "failed"
@@ -95,6 +96,9 @@ const tasksSlices = createAppSlice({
         },
         fulfilled: (state, action) => {
           state.status = "idle"
+          state.tasks = state.tasks.map(task =>
+            task.id === action.payload.id ? action.payload : task,
+          )
           state.filteredTasks = state.filteredTasks.map(filterdTask =>
             filterdTask.id === action.payload.id ? action.payload : filterdTask,
           )
@@ -118,6 +122,7 @@ const tasksSlices = createAppSlice({
         fulfilled: (state, action) => {
           state.status = "idle"
           state.tasks = state.tasks.filter(task => task.id !== action.payload)
+          state.filteredTasks = state.filteredTasks.filter(filteredTask => filteredTask.id !== action.payload)
         },
         rejected: (state, action) => {
           state.status = "failed"
