@@ -5,7 +5,7 @@ type Task = {
   status?: "to-do" | "in-progress" | "blocked" | "testing" | "done"
   name: string
   description: string
-  createdDate? : Date
+  createdDate?: Date
 }
 
 type User = {
@@ -17,8 +17,8 @@ type User = {
 }
 
 type Language = {
-  id:string
-  code:string
+  id: string
+  code: string
 }
 
 export type { Task, User, Language }

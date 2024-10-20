@@ -60,7 +60,6 @@ const UserCreateForm: FC = () => {
     } else if (status === "failed") {
       return (
         <Alerts
-        
           alertType="error"
           title="Something went wrong!"
           description={error || "User could not be added. Try again later."}

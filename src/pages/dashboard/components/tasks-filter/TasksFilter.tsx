@@ -178,7 +178,6 @@ const TasksFilter: FC = () => {
                 </span>
               </ListboxOption>
               {users.map(user => (
-                //WIP - fix user name on select
                 <ListboxOption
                   key={user.id}
                   value={user.id}

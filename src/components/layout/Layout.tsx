@@ -5,16 +5,7 @@ import type { PropsWithChildren } from "react"
 
 type LayoutProps = PropsWithChildren
 
-const layoutContainer = [
-  // "p-4",
-  // "lg:p-6",
-  // "lg:max-w-screen-lg",
-  // "xl:max-w-screen-xl",
-  // "mx-auto",
-  "w-full",
-  "h-full",
-  "overflow-scroll",
-]
+const layoutContainer = ["w-full", "h-full", "overflow-scroll"]
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (

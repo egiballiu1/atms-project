@@ -122,7 +122,9 @@ const tasksSlices = createAppSlice({
         fulfilled: (state, action) => {
           state.status = "idle"
           state.tasks = state.tasks.filter(task => task.id !== action.payload)
-          state.filteredTasks = state.filteredTasks.filter(filteredTask => filteredTask.id !== action.payload)
+          state.filteredTasks = state.filteredTasks.filter(
+            filteredTask => filteredTask.id !== action.payload,
+          )
         },
         rejected: (state, action) => {
           state.status = "failed"
@@ -179,8 +181,13 @@ const tasksSlices = createAppSlice({
 const { createTask, getTasks, updateTask, deleteTask, filterTasks, getTask } =
   tasksSlices.actions
 
-const { selectTasks, selectStatus, selectError, selectFilteredTasks, selectTaskById } =
-  tasksSlices.selectors
+const {
+  selectTasks,
+  selectStatus,
+  selectError,
+  selectFilteredTasks,
+  selectTaskById,
+} = tasksSlices.selectors
 
 export {
   tasksSlices,

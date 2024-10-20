@@ -21,8 +21,8 @@ const usersSlices = createAppSlice({
   reducers: create => ({
     createUser: create.asyncThunk(
       async (user: Omit<User, "id">) => {
-        const avatar = getRandomAvatar();
-        const response = await UserService.createUser({ ...user, avatar });
+        const avatar = getRandomAvatar()
+        const response = await UserService.createUser({ ...user, avatar })
 
         return response
       },
@@ -61,7 +61,7 @@ const usersSlices = createAppSlice({
       },
     ),
     getUser: create.asyncThunk(
-    async (id: string) => {
+      async (id: string) => {
         const response = await UserService.getUser(id)
 
         return response
@@ -134,8 +134,15 @@ const usersSlices = createAppSlice({
   },
 })
 
-const { createUser, getUsers, updateUser, deleteUser, getUser } = usersSlices.actions
-const { selectUsers, selectUserById, selectUserByRole, selectStatus, selectError } = usersSlices.selectors
+const { createUser, getUsers, updateUser, deleteUser, getUser } =
+  usersSlices.actions
+const {
+  selectUsers,
+  selectUserById,
+  selectUserByRole,
+  selectStatus,
+  selectError,
+} = usersSlices.selectors
 
 export {
   usersSlices,
