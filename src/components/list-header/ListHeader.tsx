@@ -53,7 +53,7 @@ const ListHeader: FC<ListHeaderProps> = ({ type }) => {
       </h3>
     </div>
   ) : (
-    <div className={classNames(card, "grid-cols-4")}>
+    <div className={classNames(card, "grid-cols-5")}>
       <h3 className={classNames(text)}>
         <FormattedMessage id="user-header-list-username" />
       </h3>

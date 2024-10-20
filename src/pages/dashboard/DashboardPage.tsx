@@ -4,6 +4,7 @@ import { TasksFilter, TasksGrid, TasksList, UsersList } from "./components"
 import classNames from "classnames"
 import { useAppSelector } from "../../app/hooks"
 import { selectUser } from "../../store/slices/auth"
+import { Charts } from "../../components"
 
 const dashboardMenuItem = [
   "block",
@@ -38,6 +39,8 @@ const DashboardPage = () => {
         )
       case "users":
         return <UsersList />
+      case "charts":
+        return <Charts />
     }
   }
 
@@ -46,7 +49,7 @@ const DashboardPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] lg:h-screen ">
         <div className="bg-gray-lighter text-black font-bold lg:sticky lg:top-[100px] lg:left-0 z-50">
           <ul
-            className={`grid ${user?.role === "admin" ? "grid-cols-3" : "grid-cols-2"} lg:grid-cols-1`}
+            className={`grid ${user?.role === "admin" ? "grid-cols-4" : "grid-cols-3"} lg:grid-cols-1`}
           >
             <li>
               <button
@@ -80,6 +83,17 @@ const DashboardPage = () => {
                 </button>
               </li>
             )}
+
+            <li>
+              <button
+                className={classNames(dashboardMenuItem, {
+                  "bg-primary-25": activeMenu === "charts",
+                })}
+                onClick={() => setActiveMenu("charts")}
+              >
+                Charts
+              </button>
+            </li>
           </ul>
         </div>
 

@@ -16,7 +16,7 @@ import { motion, AnimatePresence } from "framer-motion"
 const card = [
   "grid",
   "grid-cols-2",
-  "lg:grid-cols-[1fr_1fr_1fr_1fr_50px]",
+  "lg:grid-cols-5",
   "justify-between",
   "items-center",
   "border",

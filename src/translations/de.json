@@ -19,5 +19,7 @@
   "no-tasks-found-grid": "Mit den angewendeten",
   "save": "Save",
   "cancel": "Cancel",
-  "edit": "Edit"
+  "edit": "Edit",
+  "chart-tasks-by-status": "Group tasks by status",
+  "chart-tasks-by-priority": "Group tasks by priority : "
 }
