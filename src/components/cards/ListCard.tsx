@@ -28,7 +28,6 @@ const card = [
   "rounded-xl",
   "w-auto",
   "cursor-pointer",
-  "mb-2",
   "gap-2",
   "bg-white",
 ]
@@ -143,7 +142,7 @@ const ListCard: FC<Task> = ({
   }
 
   return (
-    <div className="relative group">
+    <div className="relative group mb-2">
       <div className={classNames(card)}>
         <XCircleIcon
           className="absolute -top-2 -right-2 w-6 h-6 text-gray-400 hover:text-red-500 cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"

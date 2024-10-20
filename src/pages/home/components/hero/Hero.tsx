@@ -1,6 +1,7 @@
 import classNames from "classnames"
 import { Button } from "../../../../components"
 import { FormattedMessage } from "react-intl"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const container = [
   "p-4",
@@ -30,6 +31,9 @@ const title = [
 const subtitle = ["text-black", "text-center", "lg:text-left", "pb-10"]
 
 const Hero = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+
   return (
     <div className={classNames(container)}>
       <div className="flex flex-col items-center lg:items-start">
@@ -39,7 +43,13 @@ const Hero = () => {
         <h3 className={classNames(subtitle)}>
           <FormattedMessage id="hp-hero-subtitle" />
         </h3>
-        <Button label="Login" url="/login" buttonStyle="secondary" />
+        <Button
+          label={<FormattedMessage id="login" />}
+          buttonStyle="secondary"
+          onClick={() =>
+            navigate("/login", { state: { from: location }, replace: true })
+          }
+        />
       </div>
       <img
         src="/src/public/assets/atms.svg"

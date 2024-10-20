@@ -5,6 +5,7 @@ import classNames from "classnames"
 import { useAppSelector } from "../../app/hooks"
 import { selectUser } from "../../store/slices/auth"
 import { Charts } from "../../components"
+import { FormattedMessage } from "react-intl"
 
 const dashboardMenuItem = [
   "block",
@@ -58,7 +59,7 @@ const DashboardPage = () => {
                 })}
                 onClick={() => setActiveMenu("list")}
               >
-                List
+                <FormattedMessage id="list" />
               </button>
             </li>
             <li>
@@ -68,7 +69,7 @@ const DashboardPage = () => {
                 })}
                 onClick={() => setActiveMenu("grid")}
               >
-                Grid
+                <FormattedMessage id="grid" />
               </button>
             </li>
             {user?.role === "admin" && (
@@ -79,11 +80,10 @@ const DashboardPage = () => {
                   })}
                   onClick={() => setActiveMenu("users")}
                 >
-                  Users
+                  <FormattedMessage id="users" />
                 </button>
               </li>
             )}
-
             <li>
               <button
                 className={classNames(dashboardMenuItem, {
@@ -91,7 +91,7 @@ const DashboardPage = () => {
                 })}
                 onClick={() => setActiveMenu("charts")}
               >
-                Charts
+                <FormattedMessage id="charts" />
               </button>
             </li>
           </ul>

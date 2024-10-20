@@ -4,6 +4,7 @@ import { logout, selectIsAuthenticated } from "../../store/slices/auth"
 import { Button } from "../button"
 import { LanguageSelect } from "../language-select"
 import { FormattedMessage } from "react-intl"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const container = [
   "px-4",
@@ -25,12 +26,15 @@ const buttonContainer = [
   "items-end",
   "lg:justify-end",
   "gap-2",
-  "lg:gap-5"
+  "lg:gap-5",
 ]
 
 const Header = () => {
   const dispatch = useAppDispatch()
   const isAuthenticated = useAppSelector(selectIsAuthenticated)
+
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const handleLogout = () => {
     dispatch(logout())
@@ -39,9 +43,14 @@ const Header = () => {
   return (
     <div className={classNames("bg-primary sticky top-0")}>
       <div className={classNames(container)}>
-        <a href="/" className={classNames('w-fit')}>
+        <div
+          className={classNames("w-fit")}
+          onClick={() =>
+            navigate("/", { state: { from: location }, replace: true })
+          }
+        >
           <img src="/logo.svg" alt="ATMS logo" width={60} height={60} />
-        </a>
+        </div>
         <div className={classNames(buttonContainer)}>
           <LanguageSelect />
           {isAuthenticated && (

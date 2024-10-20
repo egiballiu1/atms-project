@@ -22,6 +22,17 @@
   "edit": "Edit",
   "chart-tasks-by-status": "Group tasks by status : ",
   "chart-tasks-by-priority": "Group tasks by priority : ",
-  "user-update-success":"Status updated successfully",
-  "user-update-error":"Could not update status. Try again later!"
+  "user-update-success": "Status updated successfully",
+  "user-update-error": "Could not update status. Try again later!",
+  "login": "Login",
+  "404-title": "Page not found",
+  "404-subtitle": "Sorry, we couldn’t find the page you’re looking for.",
+  "back-home": "Go back home",
+  "login-to-aacount": "Log in to your account",
+  "username": "Username",
+  "password": "Password",
+  "list": "List",
+  "grid": "Grid",
+  "users": "Users",
+  "charts": "Charts"
 }

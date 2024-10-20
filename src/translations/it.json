@@ -20,6 +20,17 @@
   "save": "Salva",
   "cancel": "Cancella",
   "edit": "Modifica",
-  "chart-tasks-by-status": "Group tasks by status",
-  "chart-tasks-by-priority": "Group tasks by priority : "
+  "chart-tasks-by-status": "Raggruppa le attività in base allo stato : ",
+  "chart-tasks-by-priority": "Raggruppa le attività in base alla priorità : ",
+  "login": "Accedi",
+  "404-title": "Pagina non trovata",
+  "404-subtitle": "Spiacenti, non siamo riusciti a trovare la pagina che stai cercando.",
+  "back-home": "Torna a casa",
+  "login-to-aacount": "Accedi al tuo account",
+  "username": "Username",
+  "password": "Password",
+  "list": "Lista",
+  "grid": "Griglia",
+  "users": "Utenti",
+  "charts": "Grafici"
 }

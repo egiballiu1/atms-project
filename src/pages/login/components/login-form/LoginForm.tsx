@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
 import { login, selectError, selectStatus } from "../../../../store/slices/auth"
-import { Alerts } from "../../../../components"
+import { Alerts, Button } from "../../../../components"
+import { FormattedMessage } from "react-intl"
 
 const LoginForm = () => {
   const dispatch = useAppDispatch()
@@ -26,9 +27,7 @@ const LoginForm = () => {
     if (!formSubmitted) return null
 
     if (status === "loading") {
-      return (
-        <Alerts alertType="loading"/>
-      )
+      return <Alerts alertType="loading" />
     } else if (status === "idle") {
       return (
         <Alerts
@@ -53,7 +52,7 @@ const LoginForm = () => {
     <div className="sm:mx-auto sm:w-full sm:max-w-sm max-w-[60%] m-auto">
       <div className="mt-10 sm:mx-auto">
         <h2 className="my-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Log in to your account
+          <FormattedMessage id="login-to-aacount" />
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -61,7 +60,7 @@ const LoginForm = () => {
               htmlFor="username"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              Username
+              <FormattedMessage id="username" />
             </label>
             <div className="mt-2">
               <input
@@ -83,7 +82,7 @@ const LoginForm = () => {
                 htmlFor="password"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Password
+                <FormattedMessage id="password" />
               </label>
             </div>
             <div className="mt-2">
@@ -100,12 +99,13 @@ const LoginForm = () => {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Log in
-          </button>
+          <div className="flex justify-center">
+            <Button
+              buttonStyle="primary"
+              label={<FormattedMessage id="login" />}
+              type="submit"
+            />
+          </div>
         </form>
         {renderAlerts()}
       </div>
