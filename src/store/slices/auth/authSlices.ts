@@ -27,7 +27,7 @@ const authSlices = createAppSlice({
         const response = await AuthService.login(body)
         const user = jwtDecode(response.token) as User
 
-        Cookies.set(`atms-token`, response.token, {
+        Cookies?.set(`atms-token`, response.token, {
           expires: 1,
           secure: true,
         })
@@ -54,7 +54,7 @@ const authSlices = createAppSlice({
     logout: create.reducer(state => {
       state.isAuthenticated = false
       state.user = null
-      Cookies.remove(`atms-token`)
+      Cookies?.remove(`atms-token`)
     }),
   }),
   selectors: {
@@ -69,6 +69,7 @@ const { login, logout } = authSlices.actions
 const { selectUser, selectIsAuthenticated, selectStatus, selectError } =
   authSlices.selectors
 
+export type { AuthSliceState }
 export {
   authSlices,
 
