@@ -27,3 +27,8 @@ npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
 - [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
 - [Vite](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
 - [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
+
+## Login instructions based on user role
+
+- To access the Users tab on the dashboard, please log in with the username `admin`.
+- If you log in with any other username and password, you will access the system as a regular user.
